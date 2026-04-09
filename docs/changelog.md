@@ -5,6 +5,28 @@ version: 2.0
 
 # Changelog
 
+## 2026-04 v2.2 — Convenciones de Skeleton y KeyboardAvoidingView
+
+**Motivación:** Dos patrones críticos de UX no estaban documentados ni aplicados en el template: el manejo del teclado virtual en pantallas con formularios (que en iOS tapaba los campos) y el uso de skeletons como estado de carga para listas y tarjetas (en lugar de `ActivityIndicator`, que degrada la experiencia percibida).
+
+**Cambios en documentación:**
+- `.github/copilot-instructions.md` — Añadidas dos nuevas reglas en "Reglas no negociables": **Loading states** (skeletons con boneyard, nunca `ActivityIndicator` como estado principal) y **Keyboard management** (`KeyboardAvoidingView` con `Platform.OS` en toda screen con `TextInput`).
+- `.github/copilot-instructions.md` — Añadidas dos filas en la tabla "Doc a leer según la tarea": pantallas con formularios → `templates-snippets.md`; loading states → `hooks-and-state.md`.
+- `docs/project-setup.md` — `boneyard` añadido a las dependencias del bootstrap (pnpm y npm), convirtiéndola en dependencia base del template.
+- `docs/templates-snippets.md` — Plantillas de **Login** y **Register** actualizadas para incluir `KeyboardAvoidingView` + `Platform` con el patrón correcto iOS/Android.
+- `docs/templates-snippets.md` — Nueva sección **"KeyboardAvoidingView — Screen con inputs"** con el patrón de referencia (`SafeAreaView` > `KeyboardAvoidingView` > contenido).
+- `docs/templates-snippets.md` — Nueva sección **"Loading states — Skeleton con boneyard"** con plantilla completa, instalación, patrón `isLoading` y tabla de reglas (skeleton vs spinner).
+- `docs/hooks-and-state.md` — Nueva sección **"Loading States y Skeleton"** después del bloque de React Query: regla general, instalación de boneyard, patrón en screen con React Query y enlace cross-referencia a `templates-snippets.md`.
+- `docs/conventions.md` — Dos nuevos anti-patrones en "Anti-patrones Generales": screen con `TextInput` sin `KeyboardAvoidingView` y pantalla de lista con `ActivityIndicator` en lugar de skeleton.
+- `docs/agent-instructions.md` — Dos nuevos checks en el checklist del **PASO 6**: `KeyboardAvoidingView` en screens con inputs y skeleton de boneyard en screens de lista.
+- `docs/agent-instructions.md` — Dos nuevas reglas operativas: **Loading states** y **Keyboard management**, alineadas con las reglas de `copilot-instructions.md`.
+
+**Cambios en el proyecto:**
+- `src/screens/Login/index.tsx` — Añadido `KeyboardAvoidingView` con `behavior={Platform.OS === 'ios' ? 'padding' : 'height'}` y `Platform` importado de `react-native`.
+- `src/screens/Register/index.tsx` — Ídem.
+
+---
+
 ## 2026-03 v2.1 — Alineación final de `.github/copilot-instructions.md`
 
 **Motivación:** Aunque la skill y los docs base ya se habían endurecido, el archivo `.github/copilot-instructions.md` todavía no reflejaba explícitamente varias reglas operativas críticas: ejecución estricta, scaffold en raíz, shell real de `App.tsx` y cierre obligatorio con siguientes pasos.

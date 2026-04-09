@@ -260,3 +260,50 @@ export function Home() {
   )
 }
 
+// ❌ Screen con TextInput sin KeyboardAvoidingView (teclado cubre los campos en iOS)
+export function LoginScreen() {
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="flex-1 justify-center px-6">
+        <TextInput placeholder="Email" />
+      </View>
+    </SafeAreaView>
+  )
+}
+// ✅ Screen con TextInput envuelta en KeyboardAvoidingView
+export function LoginScreen() {
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <View className="flex-1 justify-center px-6">
+          <TextInput placeholder="Email" />
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  )
+}
+
+// ❌ Pantalla de lista con ActivityIndicator como estado principal
+export function ProductsScreen() {
+  const { products, isLoading } = useProducts()
+  if (isLoading) return <ActivityIndicator />  // NO como estado principal
+}
+// ✅ Pantalla de lista con skeleton de boneyard
+export function ProductsScreen() {
+  const { products, isLoading } = useProducts()
+  if (isLoading) {
+    return (
+      <SafeAreaView className="flex-1">
+        <View className="p-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Skeleton key={i} width="100%" height={80} borderRadius={10} style={{ marginBottom: 12 }} />
+          ))}
+        </View>
+      </SafeAreaView>
+    )
+  }
+  // render con datos reales
+}

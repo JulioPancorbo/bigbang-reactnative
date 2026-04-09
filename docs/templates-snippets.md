@@ -200,7 +200,7 @@ export function Welcome() {
 ```tsx
 // src/screens/Login/index.tsx
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Button } from '@/components/Button'
 import { useAuth } from '@/hooks/useAuth'
@@ -231,48 +231,53 @@ export function Login() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 justify-center px-6">
-        <Text className="text-2xl font-bold text-gray-900 mb-6">Iniciar sesión</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <View className="flex-1 justify-center px-6">
+          <Text className="text-2xl font-bold text-gray-900 mb-6">Iniciar sesión</Text>
 
-        <TextInput
-          className="border border-gray-300 rounded-lg p-3 mb-1"
-          value={values.email}
-          onChangeText={(v) => handleChange('email', v)}
-          placeholder="Email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        {errors.email ? <Text className="text-danger text-sm mb-3">{errors.email}</Text> : <View className="mb-3" />}
+          <TextInput
+            className="border border-gray-300 rounded-lg p-3 mb-1"
+            value={values.email}
+            onChangeText={(v) => handleChange('email', v)}
+            placeholder="Email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+          {errors.email ? <Text className="text-danger text-sm mb-3">{errors.email}</Text> : <View className="mb-3" />}
 
-        <TextInput
-          className="border border-gray-300 rounded-lg p-3 mb-1"
-          value={values.password}
-          onChangeText={(v) => handleChange('password', v)}
-          placeholder="Contraseña"
-          secureTextEntry
-        />
-        {errors.password ? <Text className="text-danger text-sm mb-3">{errors.password}</Text> : <View className="mb-3" />}
+          <TextInput
+            className="border border-gray-300 rounded-lg p-3 mb-1"
+            value={values.password}
+            onChangeText={(v) => handleChange('password', v)}
+            placeholder="Contraseña"
+            secureTextEntry
+          />
+          {errors.password ? <Text className="text-danger text-sm mb-3">{errors.password}</Text> : <View className="mb-3" />}
 
-        <Button
-          label={loading ? 'Cargando...' : 'Iniciar sesión'}
-          onPress={handleSubmit}
-          disabled={loading}
-        />
+          <Button
+            label={loading ? 'Cargando...' : 'Iniciar sesión'}
+            onPress={handleSubmit}
+            disabled={loading}
+          />
 
-        <Button
-          label="Entrar como invitado"
-          onPress={loginAsGuest}
-          variant="secondary"
-          disabled={loading}
-          className="mt-3"
-        />
+          <Button
+            label="Entrar como invitado"
+            onPress={loginAsGuest}
+            variant="secondary"
+            disabled={loading}
+            className="mt-3"
+          />
 
-        <TouchableOpacity onPress={() => navigation.navigate('Register')} className="mt-4">
-          <Text className="text-center text-primary">
-            ¿No tienes cuenta? <Text className="font-semibold">Regístrate</Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')} className="mt-4">
+            <Text className="text-center text-primary">
+              ¿No tienes cuenta? <Text className="font-semibold">Regístrate</Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }
@@ -283,7 +288,7 @@ export function Login() {
 ```tsx
 // src/screens/Register/index.tsx
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Button } from '@/components/Button'
 import { useAuth } from '@/hooks/useAuth'
@@ -316,61 +321,170 @@ export function Register() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 justify-center px-6">
-        <Text className="text-2xl font-bold text-gray-900 mb-6">Crear cuenta</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <View className="flex-1 justify-center px-6">
+          <Text className="text-2xl font-bold text-gray-900 mb-6">Crear cuenta</Text>
 
-        <TextInput
-          className="border border-gray-300 rounded-lg p-3 mb-1"
-          value={values.name}
-          onChangeText={(v) => handleChange('name', v)}
-          placeholder="Nombre"
-        />
-        {errors.name ? <Text className="text-danger text-sm mb-3">{errors.name}</Text> : <View className="mb-3" />}
+          <TextInput
+            className="border border-gray-300 rounded-lg p-3 mb-1"
+            value={values.name}
+            onChangeText={(v) => handleChange('name', v)}
+            placeholder="Nombre"
+          />
+          {errors.name ? <Text className="text-danger text-sm mb-3">{errors.name}</Text> : <View className="mb-3" />}
 
-        <TextInput
-          className="border border-gray-300 rounded-lg p-3 mb-1"
-          value={values.email}
-          onChangeText={(v) => handleChange('email', v)}
-          placeholder="Email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        {errors.email ? <Text className="text-danger text-sm mb-3">{errors.email}</Text> : <View className="mb-3" />}
+          <TextInput
+            className="border border-gray-300 rounded-lg p-3 mb-1"
+            value={values.email}
+            onChangeText={(v) => handleChange('email', v)}
+            placeholder="Email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+          {errors.email ? <Text className="text-danger text-sm mb-3">{errors.email}</Text> : <View className="mb-3" />}
 
-        <TextInput
-          className="border border-gray-300 rounded-lg p-3 mb-1"
-          value={values.password}
-          onChangeText={(v) => handleChange('password', v)}
-          placeholder="Contraseña"
-          secureTextEntry
-        />
-        {errors.password ? <Text className="text-danger text-sm mb-3">{errors.password}</Text> : <View className="mb-3" />}
+          <TextInput
+            className="border border-gray-300 rounded-lg p-3 mb-1"
+            value={values.password}
+            onChangeText={(v) => handleChange('password', v)}
+            placeholder="Contraseña"
+            secureTextEntry
+          />
+          {errors.password ? <Text className="text-danger text-sm mb-3">{errors.password}</Text> : <View className="mb-3" />}
 
-        <TextInput
-          className="border border-gray-300 rounded-lg p-3 mb-1"
-          value={values.confirmPassword}
-          onChangeText={(v) => handleChange('confirmPassword', v)}
-          placeholder="Confirmar contraseña"
-          secureTextEntry
-        />
-        {errors.confirmPassword ? <Text className="text-danger text-sm mb-3">{errors.confirmPassword}</Text> : <View className="mb-3" />}
+          <TextInput
+            className="border border-gray-300 rounded-lg p-3 mb-1"
+            value={values.confirmPassword}
+            onChangeText={(v) => handleChange('confirmPassword', v)}
+            placeholder="Confirmar contraseña"
+            secureTextEntry
+          />
+          {errors.confirmPassword ? <Text className="text-danger text-sm mb-3">{errors.confirmPassword}</Text> : <View className="mb-3" />}
 
-        <Button
-          label={loading ? 'Cargando...' : 'Registrarse'}
-          onPress={handleSubmit}
-          disabled={loading}
-        />
+          <Button
+            label={loading ? 'Cargando...' : 'Registrarse'}
+            onPress={handleSubmit}
+            disabled={loading}
+          />
 
-        <TouchableOpacity onPress={() => navigation.navigate('Login')} className="mt-4">
-          <Text className="text-center text-primary">
-            ¿Ya tienes cuenta? <Text className="font-semibold">Inicia sesión</Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')} className="mt-4">
+            <Text className="text-center text-primary">
+              ¿Ya tienes cuenta? <Text className="font-semibold">Inicia sesión</Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }
 ```
+
+---
+
+## KeyboardAvoidingView — Screen con inputs
+
+Toda screen que contenga `TextInput` debe envolver su contenido en `KeyboardAvoidingView`. El patrón correcto:
+
+```tsx
+import { KeyboardAvoidingView, Platform } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+
+export function MyFormScreen(): React.JSX.Element {
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        {/* contenido con TextInput aquí */}
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  )
+}
+```
+
+- `SafeAreaView` siempre es el contenedor más externo
+- `KeyboardAvoidingView` va dentro de `SafeAreaView` con `style={{ flex: 1 }}`
+- En iOS: `behavior="padding"` sube el contenido. En Android: `behavior="height"` reduce la altura
+
+---
+
+## Loading states — Skeleton con boneyard
+
+Para estados de carga de listas y tarjetas usar **boneyard** (instalado en el bootstrap). Nunca usar `ActivityIndicator` como estado principal de una pantalla.
+
+### Instalación
+
+```bash
+pnpm add boneyard
+```
+
+### Patrón base para pantalla con lista
+
+```tsx
+import React from 'react'
+import { View, FlatList } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { Skeleton } from 'boneyard'
+import { useProducts } from '@/hooks/useProducts'
+import type { Product } from '@/types'
+
+// Componente de skeleton para una tarjeta
+function ProductCardSkeleton(): React.JSX.Element {
+  return (
+    <View className="p-4 mb-3 bg-white rounded-xl">
+      <Skeleton width="60%" height={20} borderRadius={6} />
+      <Skeleton width="40%" height={14} borderRadius={6} style={{ marginTop: 8 }} />
+      <Skeleton width="100%" height={120} borderRadius={10} style={{ marginTop: 12 }} />
+    </View>
+  )
+}
+
+export function ProductsScreen(): React.JSX.Element {
+  const { products, isLoading } = useProducts()
+
+  if (isLoading) {
+    return (
+      <SafeAreaView className="flex-1 bg-gray-50">
+        <View className="p-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </View>
+      </SafeAreaView>
+    )
+  }
+
+  return (
+    <SafeAreaView className="flex-1 bg-gray-50">
+      <FlatList
+        data={products}
+        keyExtractor={(item: Product) => String(item.id)}
+        renderItem={({ item }) => (
+          <View className="p-4 mb-3 bg-white rounded-xl">
+            {/* contenido real */}
+          </View>
+        )}
+        contentContainerStyle={{ padding: 16 }}
+      />
+    </SafeAreaView>
+  )
+}
+```
+
+### Reglas de loading
+
+| Situación | Patrón |
+|---|---|
+| Lista o tarjetas cargando datos | Skeleton con boneyard |
+| Submit de formulario | Deshabilitar botón + label "Cargando…" |
+| Acción puntual (borrar, actualizar) | Deshabilitar el control afectado |
+| ❌ Nunca | `ActivityIndicator` como estado principal de pantalla |
+
+---
 
 ### `Home` — Pantalla principal (dentro de tabs)
 

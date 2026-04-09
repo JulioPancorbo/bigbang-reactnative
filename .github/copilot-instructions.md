@@ -22,6 +22,8 @@ Antes de cualquier acción, lee `docs/agent-instructions.md`. Define el flujo co
 - **App shell:** `App.tsx` debe usar `SafeAreaProvider` como provider global, `QueryClientProvider`, `ErrorBoundary`, `NavigationContainer`, `RootNavigator` y `<Toast />` como último hijo. En desarrollo, `verifyInstallation()` de Nativewind va dentro de `if (__DEV__)`.
 - **SafeAreaView:** Todas las screens deben estar envueltas en `<SafeAreaView>` para respetar el status bar, notch, y dynamic island. `SafeAreaProvider` está en `App.tsx` (global).
 - **Guest mode:** El template soporta "Entrar como invitado" desde Login. Usar `useAuth().loginAsGuest()` para acceder a tabs sin autenticación. Screens pueden checar `isGuest` para adaptar contenido (ej: Profile muestra UI diferente para invitados).
+- **Loading states:** Usar skeletons con **boneyard** ([github.com/0xGF/boneyard](https://github.com/0xGF/boneyard)) para estados de carga de listas y tarjetas. Nunca `ActivityIndicator` como estado principal de pantalla. Para acciones puntuales (submit de formulario) es aceptable deshabilitar el botón con un label de "Cargando…".
+- **Keyboard management:** Toda screen que contenga `TextInput` debe envolver su contenido en `<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>`. Importar `Platform` de `react-native`.
 
 ---
 
@@ -40,6 +42,8 @@ Antes de cualquier acción, lee `docs/agent-instructions.md`. Define el flujo co
 | Plugin nativo (cámara, mapas, PDF, etc.) | `docs/native-plugins.md` — leer **antes** de instalar |
 | Naming, TypeScript, imports | `docs/conventions.md` |
 | Tests | `docs/testing-ci.md` |
+| Pantallas con formularios / inputs | `docs/templates-snippets.md` (sección KeyboardAvoidingView) |
+| Loading states / skeleton | `docs/hooks-and-state.md` (sección Loading States y Skeleton) |
 
 ---
 

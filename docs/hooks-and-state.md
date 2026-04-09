@@ -138,6 +138,55 @@ const { products, isLoading, addProduct } = useProducts()
 await addProduct({ name: 'Nuevo', price: 99 })
 ```
 
+---
+
+## Loading States y Skeleton
+
+### Regla general
+
+- **Listas y tarjetas**: usar skeleton con **boneyard** mientras `isLoading === true`
+- **Submit de formulario**: deshabilitar el botón con label "Cargando…" — no se necesita skeleton
+- **Acciones puntuales** (borrar, actualizar un item): deshabilitar el elemento afectado
+- ❌ **Nunca** usar `ActivityIndicator` como estado principal de una pantalla
+
+### Instalación
+
+```bash
+pnpm add boneyard
+```
+
+### Patrón en screen con React Query
+
+```typescript
+// src/screens/ProductsScreen/index.tsx
+import { Skeleton } from 'boneyard'
+
+export function ProductsScreen(): React.JSX.Element {
+  const { products, isLoading } = useProducts()
+
+  if (isLoading) {
+    return (
+      <SafeAreaView className="flex-1 bg-gray-50">
+        <View className="p-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <View key={i} className="p-4 mb-3 bg-white rounded-xl">
+              <Skeleton width="60%" height={20} borderRadius={6} />
+              <Skeleton width="40%" height={14} borderRadius={6} style={{ marginTop: 8 }} />
+            </View>
+          ))}
+        </View>
+      </SafeAreaView>
+    )
+  }
+
+  // render con datos reales
+}
+```
+
+> Para la plantilla completa de skeleton ver `docs/templates-snippets.md` (sección "Loading states — Skeleton con boneyard").
+
+---
+
 ### Patrón con sub-entidades (rutas anidadas de Laravel)
 
 ```typescript

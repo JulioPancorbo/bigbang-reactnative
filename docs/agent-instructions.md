@@ -152,6 +152,8 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 - [ ] ¿Register valida que las contraseñas coincidan?
 - [ ] ¿Profile tiene botón de logout funcional con `useAuth().logout`?
 - [ ] ¿Las pantallas usan `SafeAreaView` de `react-native-safe-area-context`?
+- [ ] ¿Las pantallas con `TextInput` (Login, Register) usan `<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>`  importando `Platform` de `react-native`?
+- [ ] ¿Las pantallas de lista muestran skeleton de boneyard cuando `isLoading === true`? (no `ActivityIndicator`)
 - [ ] ¿Ninguna pantalla llama a Axios directamente? (todo a través de hooks)
 
 ---
@@ -229,6 +231,8 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 - Plugins nativos: **antes de instalar cualquier plugin nativo** (cámara, mapas, PDF, background tasks, etc.), consultar `docs/native-plugins.md`. Si la necesidad no está cubierta, proponer una opción al usuario antes de instalar.
 - Manejo de errores: **todo proyecto** debe tener `ErrorBoundary` en `App.tsx` + `useToast` hook + `<Toast />` como último hijo. Errores de API van en hooks (`onError`), nunca en screens. No usar `Alert.alert()` directamente.
 - Diseño responsive: **todas las pantallas deben ser responsive**. Usar Flexbox, fracciones (`w-1/2`), breakpoints de Nativewind (`sm:`, `md:`, `lg:`), `useWindowDimensions()` para lógica dinámica. No anchos fijos en píxeles. Diseñar para posible conversión a web (Expo Web).
+- Loading states: **toda pantalla de lista o tarjetas** debe usar skeleton de **boneyard** cuando `isLoading === true`. Nunca `ActivityIndicator` como estado principal de pantalla. Para submit de formulario: deshabilitar el botón con label "Cargando…".
+- Keyboard management: **toda screen que contenga `TextInput`** debe envolver su contenido en `<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>`. Importar `Platform` de `react-native`.
 
 ---
 

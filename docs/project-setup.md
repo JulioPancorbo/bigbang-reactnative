@@ -89,12 +89,14 @@ pnpm add nativewind axios
 pnpm add @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs
 pnpm add react-native-screens react-native-safe-area-context
 pnpm add @tanstack/react-query zustand react-native-toast-message
+pnpm add boneyard
 
 # npm (fallback)
 npm install nativewind axios
 npm install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs
 npm install react-native-screens react-native-safe-area-context
 npm install @tanstack/react-query zustand react-native-toast-message
+npm install boneyard
 
 # Dev dependencies
 # pnpm
