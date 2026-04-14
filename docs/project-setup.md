@@ -263,7 +263,7 @@ Añadir a `.gitignore`:
 
 ```tsx
 import '../global.css'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -279,17 +279,23 @@ const queryClient = new QueryClient({
   },
 })
 
-function AppBootstrap() {
-  const loadToken = useAuthStore((s) => s.loadToken)
-  useEffect(() => { loadToken() }, [loadToken])
-  return null
+let didBootstrap = false
+
+function bootstrapApp(): void {
+  if (didBootstrap) {
+    return
+  }
+
+  didBootstrap = true
+  void useAuthStore.getState().loadToken()
 }
+
+bootstrapApp()
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <AppBootstrap />
         <NavigationContainer>
           <RootNavigator />
         </NavigationContainer>
@@ -298,6 +304,8 @@ export default function App() {
   )
 }
 ```
+
+Este bootstrap se dispara una vez por carga de app, fuera del render y sin depender de un `useEffect` de montaje.
 
 ℹ️ **SafeAreaProvider** envuelve toda la app en un solo alto para que todas las screens respeten el safe area del dispositivo (status bar, notch, dynamic island). Luego cada screen usa individualmente `<SafeAreaView>` (ver `docs/conventions.md` para la convención).
 

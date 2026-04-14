@@ -5,7 +5,6 @@
 1. **`docs/hooks-and-state.md`** — Read the ENTIRE file. It contains the complete code for:
    - `authStore.ts` — Zustand store for auth session
    - `useAuth.ts` — Hook connecting authStore + auth service
-   - `useFetch.ts` — Generic fetch hook (non-React-Query)
    - `useFormState.ts` — Generic form management hook with validation
    - Usage patterns and React Query setup
 
@@ -43,21 +42,21 @@ Copy the COMPLETE code from `docs/hooks-and-state.md` section "useForm":
 - Returns: values, errors, loading, handleChange, handleSubmit
 - `handleSubmit` runs validation first, then calls onSubmit
 
-### Step 4.4 — Create `src/hooks/useFetch.ts`
-
-Copy the COMPLETE code from `docs/hooks-and-state.md` section "useFetch":
-- Generic `useFetch<T>()` hook
-- Accepts a function returning `Promise<T>` and deps array
-- Returns: data, isLoading, error
-- Handles cleanup with `mounted` flag
-
-### Step 4.5 — Create `src/hooks/useToast.ts`
+### Step 4.4 — Create `src/hooks/useToast.ts`
 
 Copy the COMPLETE code from `docs/templates-snippets.md` section "useToast":
 - Uses `react-native-toast-message` under the hood
 - `ToastType`: 'success' | 'error' | 'info'
 - Returns: show, showError, showSuccess, showInfo
 - All methods properly typed with explicit return types
+
+### Step 4.5 — Do NOT scaffold a generic `useFetch` hook
+
+The baseline no longer includes `src/hooks/useFetch.ts`.
+
+- For screen-driven server data, use React Query (`useQuery` / `useInfiniteQuery`)
+- For user-triggered actions, expose functions from the domain hook or use `useMutation`
+- Introduce raw `useEffect` only when you are synchronizing with something external and can justify it explicitly
 
 ---
 
@@ -79,8 +78,9 @@ If these files exist, this phase was likely already completed:
 - [ ] `src/hooks/useAuth.ts` exists, calls services from `@/services/auth` (NOT Axios directly)
 - [ ] `useAuth().logout()` clears both authStore AND React Query cache
 - [ ] `src/hooks/useFormState.ts` exists with generic useForm hook
-- [ ] `src/hooks/useFetch.ts` exists with generic useFetch hook
 - [ ] `src/hooks/useToast.ts` exists, wraps react-native-toast-message
+- [ ] No generic `src/hooks/useFetch.ts` was scaffolded into the baseline
+- [ ] No hook uses a `mounted` flag or generic Promise wrapper for server data
 - [ ] ALL hooks start with `use` prefix
 - [ ] ALL hooks call services, NEVER Axios directly
 - [ ] NO `console.log` in any hook

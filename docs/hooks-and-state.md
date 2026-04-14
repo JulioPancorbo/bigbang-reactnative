@@ -1,11 +1,11 @@
 ---
 title: Hooks & State
-version: 2.0
+version: 2.1
 ---
 
 # Hooks y gestión de estado
 
-Los hooks actúan como puente entre las pantallas (Screens) y la lógica de negocio (Services). Gestionan el estado de React y formatean los datos para la vista.
+Los hooks actúan como puente entre las pantallas (Screens) y la lógica de negocio (Services). Gestionan el estado de React, sincronizan sistemas externos solo cuando hace falta y formatean los datos para la vista.
 
 ---
 
@@ -27,11 +27,31 @@ Los hooks actúan como puente entre las pantallas (Screens) y la lógica de nego
 ```
 hooks/
 ├── useAuth.ts         ← Login/logout + estado de sesión
-├── useFetch.ts        ← Hook genérico para cualquier llamada puntual
 ├── useProducts.ts     ← Ejemplo con React Query
-├── useStorage.ts      ← Leer/escribir storage local
-└── useFormState.ts    ← Gestión de formularios
+├── useFormState.ts    ← Gestión de formularios
+└── useToast.ts        ← Notificaciones estandarizadas
 ```
+
+---
+
+## `useEffect` — criterio estricto en este stack
+
+Usa `useEffect` solo cuando sincronizas React con algo externo: suscripciones, timers, APIs imperativas, caches imperativas o analytics ligados a que la screen se mostró.
+
+No lo uses para:
+
+- derivar estado desde props o desde otro estado
+- disparar lógica causada por eventos del usuario (submit, click, cambio de filtro)
+- encadenar cálculos o mantener estados duplicados sincronizados
+- hidratar la sesión con un effect de montaje si puedes arrancarla una vez desde el entrypoint/store
+- envolver llamadas de servidor con un `useFetch(fn, deps)` genérico
+
+En este template, la alternativa por defecto es:
+
+- datos del servidor visibles en pantalla → React Query (`useQuery` / `useInfiniteQuery`)
+- acciones iniciadas por el usuario → `useMutation` o función expuesta por el hook
+- bootstrap único de la app → inicialización idempotente en el entrypoint/store
+- suscripción a un store externo mutable → `useSyncExternalStore`
 
 ---
 
@@ -263,35 +283,22 @@ export function useAuth() {
 
 ---
 
-## `useFetch` — Hook genérico para llamadas puntuales
+## No incluir `useFetch` genérico en el baseline
 
-Para casos donde **no necesitas React Query** (llamadas únicas, sin cache):
+Evita patrones tipo `useFetch(fn, deps)` implementados con `useEffect`, flags `mounted` y `eslint-disable`. Ese enfoque:
 
-```typescript
-// src/hooks/useFetch.ts
-import { useState, useEffect } from 'react'
+- duplica responsabilidades que React Query ya resuelve mejor
+- empuja fetch imperativo en pantallas y hooks genéricos sin dominio
+- facilita esconder dependencias incorrectas y condiciones de carrera
 
-export function useFetch<T>(fn: () => Promise<T>, deps: unknown[] = []) {
-  const [data, setData] = useState<T | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+En este stack:
 
-  useEffect(() => {
-    let mounted = true
-    setIsLoading(true)
-    fn()
-      .then(res => { if (mounted) setData(res) })
-      .catch(err => { if (mounted) setError((err as { message?: string })?.message ?? 'Error') })
-      .finally(() => { if (mounted) setIsLoading(false) })
-    return () => { mounted = false }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
+- datos del servidor ligados a la pantalla → `useQuery` / `useInfiniteQuery`
+- acciones iniciadas por el usuario → `useMutation`
+- sincronización con stores externos → `useSyncExternalStore`
+- APIs imperativas puntuales → hook específico del dominio, no un wrapper genérico de promesas
 
-  return { data, isLoading, error }
-}
-```
-
-> Prefiere `useQuery` de React Query sobre `useFetch` cuando el dato se usa en múltiples pantallas o necesita cache.
+Si un caso no encaja claramente en estos patrones, documéntalo y decídelo antes de introducir un hook genérico al baseline.
 
 ---
 
@@ -389,7 +396,7 @@ export function Login() {
 
 ### Zustand para auth (`authStore`) — OBLIGATORIO
 
-El `authStore` gestiona el estado de sesión de forma reactiva en toda la app: token, usuario autenticado y comprobación inicial al arrancar.
+El `authStore` gestiona el estado de sesión de forma reactiva en toda la app: token, usuario autenticado y comprobación inicial durante el bootstrap.
 
 ```typescript
 // src/store/authStore.ts
@@ -402,7 +409,7 @@ type AuthStore = {
   token: string | null
   user: AuthUser | null
   isGuest: boolean
-  isLoaded: boolean         // true cuando ya se comprobó el token guardado al arrancar
+  isLoaded: boolean         // true cuando ya se comprobó el token guardado durante el bootstrap
   setAuth: (token: string, user: AuthUser) => void
   setAsGuest: () => void
   clearAuth: () => void
@@ -421,7 +428,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
   clearAuth: () => set({ token: null, user: null, isGuest: false }),
 
-  // Lee el token persistido al arrancar la app
+  // Lee el token persistido durante el bootstrap de la app
   loadToken: async () => {
     const token = await getToken()
     set({ token: token ?? null, isLoaded: true })
@@ -429,18 +436,24 @@ export const useAuthStore = create<AuthStore>((set) => ({
 }))
 ```
 
-Uso en `App.tsx` para cargar el token al arrancar:
+Uso desde el entrypoint para hidratar la sesión una sola vez por carga de app:
 ```typescript
-// src/App.tsx
-import { useEffect } from 'react'
+// src/App.tsx o src/index.ts
 import { useAuthStore } from '@/store/authStore'
 
-function AppBootstrap() {
-  const loadToken = useAuthStore((s) => s.loadToken)
-  useEffect(() => { loadToken() }, [loadToken])
-  return null
+let didBootstrapSession = false
+
+export function bootstrapSession(): void {
+  if (didBootstrapSession) {
+    return
+  }
+
+  didBootstrapSession = true
+  void useAuthStore.getState().loadToken()
 }
 ```
+
+`RootNavigator` ya puede esperar a `isLoaded` sin depender de un `useEffect` de montaje.
 
 ### React Query vs Zustand — cuándo usar cada uno
 

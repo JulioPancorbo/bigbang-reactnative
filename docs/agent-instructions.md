@@ -40,6 +40,14 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 3. Si el proyecto se va a abrir en Expo Go, usa una línea compatible con el cliente instalado.
 4. Ejecuta `npx expo-doctor@latest` antes del primer `pnpm start`.
 
+### Regla 0.2 — `useEffect` es escape hatch, no la opción por defecto
+
+1. Usa `useEffect` solo para sincronizar React con sistemas externos o APIs imperativas.
+2. No lo uses para derivar estado desde props/state, encadenar cálculos, notificar a padres, reaccionar a clicks/submits ni envolver fetch genérico.
+3. Para datos del servidor → React Query (`useQuery`/`useMutation`).
+4. Para acciones del usuario → event handlers o funciones expuestas por el hook.
+5. Para bootstrap único de la app (por ejemplo, hidratar sesión) → inicialización idempotente en entrypoint/store, no un effect de montaje.
+
 ---
 
 ## Flujo principal — Crear proyecto desde cero
@@ -186,6 +194,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 - [ ] ¿El estado de sesión (token, usuario) vive en `authStore` con Zustand?
 - [ ] ¿Los hooks llaman a servicios (no a Axios directamente)?
 - [ ] ¿Las screens obtienen datos del hook, no del servicio?
+- [ ] ¿No se creó un hook genérico tipo `useFetch(fn, deps)` basado en `useEffect`/`mounted` como patrón base?
 - [ ] ¿No se usa Redux Toolkit?
 
 ---
@@ -230,6 +239,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 - Iconos y animaciones: seguir la jerarquía de `docs/animations-and-icons.md` (iconos estáticos → `@expo/vector-icons`, animaciones JSON → `lottie-react-native`, animaciones de UI → `react-native-reanimated`).
 - Plugins nativos: **antes de instalar cualquier plugin nativo** (cámara, mapas, PDF, background tasks, etc.), consultar `docs/native-plugins.md`. Si la necesidad no está cubierta, proponer una opción al usuario antes de instalar.
 - Manejo de errores: **todo proyecto** debe tener `ErrorBoundary` en `App.tsx` + `useToast` hook + `<Toast />` como último hijo. Errores de API van en hooks (`onError`), nunca en screens. No usar `Alert.alert()` directamente.
+- `useEffect`: úsalo solo para sincronización externa real. No lo uses para derivar estado, encadenar cálculos, disparar lógica de eventos del usuario ni como patrón genérico de fetch. Para datos del servidor, React Query; para bootstrap único, inicialización idempotente en entrypoint/store.
 - Diseño responsive: **todas las pantallas deben ser responsive**. Usar Flexbox, fracciones (`w-1/2`), breakpoints de Nativewind (`sm:`, `md:`, `lg:`), `useWindowDimensions()` para lógica dinámica. No anchos fijos en píxeles. Diseñar para posible conversión a web (Expo Web).
 - Loading states: **toda pantalla de lista o tarjetas** debe usar skeleton de **boneyard** cuando `isLoading === true`. Nunca `ActivityIndicator` como estado principal de pantalla. Para submit de formulario: deshabilitar el botón con label "Cargando…".
 - Keyboard management: **toda screen que contenga `TextInput`** debe envolver su contenido en `<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>`. Importar `Platform` de `react-native`.

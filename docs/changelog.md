@@ -5,6 +5,26 @@ version: 2.0
 
 # Changelog
 
+## 2026-04 v2.3 — Alineación de `useEffect` con la guía oficial de React
+
+**Motivación:** La base documental todavía normalizaba dos patrones que React desaconseja en [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect): usar `useEffect` como bootstrap de montaje para hidratar auth y mantener un `useFetch(fn, deps)` genérico con flags `mounted`. Eso empujaba a usar efectos como mecanismo por defecto en vez de reservarlos para sincronización externa real.
+
+**Cambios en documentación e instrucciones:**
+- `.github/copilot-instructions.md` — Nueva regla no negociable: `useEffect` solo para sincronización externa o APIs imperativas; prohibido para estado derivado, lógica de eventos, submits/POST y wrappers genéricos de fetch.
+- `docs/agent-instructions.md` — Nueva regla operativa 0.2 sobre `useEffect` y nuevo check en PASO 8 para impedir un `useFetch(fn, deps)` como patrón base.
+- `docs/conventions.md` — Nueva sección de criterio de uso de `useEffect` con ejemplos de anti-patrón y alternativa correcta.
+- `docs/hooks-and-state.md` — Eliminado `useFetch` como parte del baseline; añadida guía explícita de alternativas (`useQuery`, `useMutation`, `useSyncExternalStore`) y bootstrap de sesión idempotente fuera del render.
+- `docs/project-setup.md`, `docs/templates-snippets.md` y `docs/angular-to-react-native.md` — `App.tsx` y la migración desde Angular ya no recomiendan `loadToken()` en un effect de montaje; pasan a bootstrap idempotente en entrypoint/store.
+- `docs/structure-guide.md` y `docs/testing-ci.md` — Lenguaje ajustado para no presentar `useEffect` como herramienta por defecto del hook.
+
+**Cambios en la skill `bigbang-reactnative`:**
+- `.copilot/skills/bigbang-reactnative/SKILL.md` — La fase 4 deja de exigir `useFetch` y añade una convención explícita para restringir `useEffect` a sincronización externa.
+- `.copilot/skills/bigbang-reactnative/references/phase-4-state-hooks.md` — Eliminado el scaffold obligatorio de `useFetch.ts`; el baseline pasa a React Query + hooks orientados a dominio.
+- `.copilot/skills/bigbang-reactnative/references/phase-6-ui.md` — `App.tsx` deja de depender de `AppBootstrap` con `useEffect`; ahora exige `bootstrapApp()` idempotente a nivel de módulo.
+- `.copilot/skills/bigbang-reactnative/scripts/verify-structure.js` — `useFetch.ts` deja de ser archivo obligatorio del baseline.
+
+**Nota:** Esta pasada actualiza la fuente de verdad documental y la skill. El código runtime actual del template todavía conserva el patrón antiguo en `src/App.tsx` y `src/hooks/useFetch.ts`; si se quiere cerrar completamente la brecha, hay que ajustar también la implementación.
+
 ## 2026-04 v2.2 — Convenciones de Skeleton y KeyboardAvoidingView
 
 **Motivación:** Dos patrones críticos de UX no estaban documentados ni aplicados en el template: el manejo del teclado virtual en pantallas con formularios (que en iOS tapaba los campos) y el uso de skeletons como estado de carga para listas y tarjetas (en lugar de `ActivityIndicator`, que degrada la experiencia percibida).

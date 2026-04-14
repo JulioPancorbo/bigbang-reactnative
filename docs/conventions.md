@@ -135,7 +135,7 @@ const x: any = value
 
 ```typescript
 // 1. React y librerías de React
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 
 // 2. Librerías de terceros
@@ -147,6 +147,43 @@ import type { User } from '@/types'
 
 // 4. Relativos locales (máximo 1 nivel, excepcional)
 import { HeroSection } from './components/HeroSection'
+```
+
+---
+
+## `useEffect` — criterio de uso
+
+- ✅ Solo para sincronizar con algo externo a React: suscripciones, timers, APIs imperativas, caches imperativas o analytics ligados a que una screen se mostró.
+- ✅ Si la sincronización de red depende de la pantalla, preferir React Query antes que effects manuales.
+- ❌ No usarlo para derivar estado desde props/state.
+- ❌ No usarlo para lógica causada por eventos del usuario (submit, click, cambio de input).
+- ❌ No usarlo para encadenar cálculos ni para mantener dos estados sincronizados artificialmente.
+- ❌ No usarlo como wrapper genérico `useFetch(fn, deps)` en el template base.
+
+```typescript
+// ❌ Estado derivado con effect
+const [fullName, setFullName] = useState('')
+useEffect(() => {
+  setFullName(`${firstName} ${lastName}`)
+}, [firstName, lastName])
+
+// ✅ Derivar durante render
+const fullName = `${firstName} ${lastName}`
+```
+
+```typescript
+// ❌ Submit disparado por effect
+const [payload, setPayload] = useState<LoginPayload | null>(null)
+useEffect(() => {
+  if (payload) {
+    void login(payload)
+  }
+}, [payload])
+
+// ✅ Evento del usuario -> handler / mutation
+const handleSubmit = (): void => {
+  void login(values)
+}
 ```
 
 ---

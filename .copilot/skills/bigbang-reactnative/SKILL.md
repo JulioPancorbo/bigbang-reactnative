@@ -42,7 +42,7 @@ Main Agent (Orchestrator) — reads 0 docs, creates 0 project files
 │
 ├─ Subagent → Phase 4: State & Hooks
 │    Reads: phase-4-state-hooks.md → hooks-and-state.md
-│    Creates: authStore.ts, useAuth.ts, useFormState.ts, useFetch.ts, useToast.ts
+│    Creates: authStore.ts, useAuth.ts, useFormState.ts, useToast.ts
 │    Reports: PASS or FAIL + reason
 │
 ├─ Subagent → Phase 5: Navigation
@@ -125,7 +125,7 @@ Create /memories/session/bigbang-progress.md with:
 - [ ] Phase 1: Bootstrap (project, deps, configs, folder structure)
 - [ ] Phase 2: Services (api.ts, auth.ts, storage.ts, logger.ts)
 - [ ] Phase 3: Types & Utils (models, validators, formatters, constants)
-- [ ] Phase 4: State & Hooks (authStore, useAuth, useForm, useFetch, useToast)
+- [ ] Phase 4: State & Hooks (authStore, useAuth, useForm, useToast)
 - [ ] Phase 5: Navigation (types, hooks, RootNavigator, stacks)
 - [ ] Phase 6: UI (Button, ErrorBoundary, 5 screens, App.tsx)
 - [ ] Phase 7: Verification (checklist, tsc, anti-patterns, test example)
@@ -282,6 +282,7 @@ These rules are embedded in every subagent prompt above. They also serve as a qu
 - **React Query** for server data (entities, lists)
 - **NEVER** use Redux Toolkit
 - **NEVER** store entity lists in Zustand (that goes in React Query cache)
+- **useEffect** only for external synchronization. Never use it for derived state, generic fetch wrappers, bootstrap-on-mount auth hydration, or logic caused by user events.
 
 ### Storage
 - **ALWAYS** use `expo-secure-store` for tokens — NEVER AsyncStorage

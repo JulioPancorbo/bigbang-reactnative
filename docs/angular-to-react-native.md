@@ -153,16 +153,22 @@ await SecureStore.getItemAsync('auth-token')
 await SecureStore.deleteItemAsync('auth-token')
 ```
 
-### `checkToken()` en el constructor → `loadToken()` en `useEffect`
+### `checkToken()` en el constructor → bootstrap idempotente del store/entrypoint
 
-En Angular, el constructor del `AuthenticationService` llamaba a `checkToken()` en el arranque. En React Native no hay constructores — se ejecuta `loadToken()` en un `useEffect` en `App.tsx`.
+En Angular, el constructor del `AuthenticationService` llamaba a `checkToken()` en el arranque. En React Native no hay constructores, y tampoco conviene usar un `useEffect` de montaje para esto. La equivalencia correcta es arrancar la hidratación una vez desde el entrypoint o el store, con un bootstrap idempotente.
 
 ```typescript
 // Angular (constructor)
 constructor(...) { this.checkToken() }
 
-// React Native (App.tsx)
-useEffect(() => { loadToken() }, [])
+// React Native (entrypoint / App.tsx)
+let didBootstrap = false
+
+function bootstrapApp(): void {
+  if (didBootstrap) return
+  didBootstrap = true
+  void useAuthStore.getState().loadToken()
+}
 ```
 
 ### `SubscriptionGuard.clearCache()` → `queryClient.clear()`

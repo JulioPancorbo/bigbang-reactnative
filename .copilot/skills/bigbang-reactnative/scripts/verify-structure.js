@@ -99,7 +99,6 @@ const requiredFiles = [
   // Hooks
   'src/hooks/useAuth.ts',
   'src/hooks/useFormState.ts',
-  'src/hooks/useFetch.ts',
   'src/hooks/useToast.ts',
   // Navigation
   'src/navigation/navigation-types.ts',

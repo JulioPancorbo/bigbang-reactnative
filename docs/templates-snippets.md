@@ -822,7 +822,7 @@ export * from './hooks'
 ```tsx
 // src/App.tsx
 import '../global.css'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -841,23 +841,29 @@ const queryClient = new QueryClient({
   },
 })
 
-function AppBootstrap(): null {
-  const loadToken = useAuthStore((s) => s.loadToken)
-  useEffect(() => {
-    if (__DEV__) {
-      verifyInstallation()
-    }
-    loadToken()
-  }, [loadToken])
-  return null
+let didBootstrap = false
+
+function bootstrapApp(): void {
+  if (didBootstrap) {
+    return
+  }
+
+  didBootstrap = true
+
+  if (__DEV__) {
+    verifyInstallation()
+  }
+
+  void useAuthStore.getState().loadToken()
 }
+
+bootstrapApp()
 
 export default function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary>
-          <AppBootstrap />
           <NavigationContainer>
             <RootNavigator />
           </NavigationContainer>
@@ -869,7 +875,7 @@ export default function App(): React.JSX.Element {
 }
 ```
 
-> **Nota:** `<Toast />` se coloca fuera de `<ErrorBoundary>` para que las notificaciones sigan apareciendo incluso si la app falla. `<ErrorBoundary>` envuelve el árbol de navegación para capturar errores de renderizado no controlados. `verifyInstallation()` valida la configuración de Nativewind en modo desarrollo y no afecta producción.
+> **Nota:** `<Toast />` se coloca fuera de `<ErrorBoundary>` para que las notificaciones sigan apareciendo incluso si la app falla. `<ErrorBoundary>` envuelve el árbol de navegación para capturar errores de renderizado no controlados. `bootstrapApp()` corre una sola vez por carga de app: valida Nativewind en desarrollo e hidrata la sesión sin depender de un `useEffect` de montaje.
 
 ---
 
@@ -1071,6 +1077,8 @@ useEffect(() => {
   Image.prefetch(urls)
 }, [products])
 ```
+
+> Este es un uso válido de `useEffect`: sincroniza un cache imperativo externo (`expo-image`). No deriva estado de React ni reemplaza un handler de usuario.
 
 ### Props principales
 

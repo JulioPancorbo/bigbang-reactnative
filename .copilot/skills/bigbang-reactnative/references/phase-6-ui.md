@@ -99,10 +99,9 @@ Must include ALL of these providers/components in the correct nesting order:
 1. `SafeAreaProvider` (outermost provider)
 2. `QueryClientProvider`
 3. `ErrorBoundary`
-4. `AppBootstrap` (loads token on mount)
-5. `NavigationContainer`
-6. `RootNavigator`
-7. `<Toast />` (last child, outside `ErrorBoundary`, renders on top)
+4. `NavigationContainer`
+5. `RootNavigator`
+6. `<Toast />` (last child, outside `ErrorBoundary`, renders on top)
 
 **Nativewind v4 setup in App.tsx:**
 - Import `../global.css` at the top of the file
@@ -110,11 +109,11 @@ Must include ALL of these providers/components in the correct nesting order:
 - Wrap the full app tree with `SafeAreaProvider`
 - Do NOT add `TailwindProvider`
 
-**AppBootstrap component:**
-- Reads `useAuthStore((s) => s.loadToken)`
+**`bootstrapApp()` helper:**
+- Runs once per app load at module scope
 - Runs `verifyInstallation()` only inside `if (__DEV__)`
-- Calls `loadToken()` in `useEffect`
-- Returns `null`
+- Calls `useAuthStore.getState().loadToken()`
+- Does NOT rely on a mount-only `useEffect`
 
 **QueryClient config:**
 - `staleTime: 1000 * 60 * 5` (5 minutes)
@@ -152,5 +151,5 @@ If these files exist, this phase was likely already completed:
 - [ ] All styles use `className` (no `StyleSheet.create()`)
 - [ ] `src/App.tsx` imports `../global.css`
 - [ ] `src/App.tsx` nests: SafeAreaProvider → QueryClientProvider → ErrorBoundary → NavigationContainer → RootNavigator, with `<Toast />` as the last child outside `ErrorBoundary`
-- [ ] `App.tsx` has `AppBootstrap` component that calls `loadToken()` on mount
+- [ ] `App.tsx` has an idempotent `bootstrapApp()` helper that hydrates auth outside render
 - [ ] `<Toast />` is the last child (renders on top of everything)

@@ -14,7 +14,7 @@ version: 2.0
 | `services/` | Llamadas HTTP, parseo de errores, transformaciones | Unit test |
 | `utils/` | Validadores, formateadores, helpers puros | Unit test |
 | `store/` | Estado inicial, acciones, reset | Unit test |
-| `hooks/` | Estados loading/error/data, efectos secundarios | Integration test |
+| `hooks/` | Estados loading/error/data, sincronización con servicios o APIs externas | Integration test |
 | `components/` | Solo los que tienen lógica condicional o callbacks | Unit test |
 
 **Reglas:**
@@ -273,7 +273,7 @@ const mockProducts = [
 ]
 
 describe('useProducts', () => {
-  it('loads products on mount', async () => {
+  it('loads products when the hook is used', async () => {
     ;(apiService.getProducts as jest.Mock).mockResolvedValue(mockProducts)
 
     const { result } = renderHook(() => useProducts())

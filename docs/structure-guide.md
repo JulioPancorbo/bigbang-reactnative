@@ -34,7 +34,7 @@ Utilidades (Helpers, Constants, Types)
 **La Regla de Oro:** las Screens no hacen llamadas HTTP. El flujo es:
 
 1. **Screen (El Pintor):** solo consume Hooks. No sabe qué es una URL ni Axios.
-2. **Hook (El Gerente):** gestiona `useState`/`useEffect`, formatea datos para la vista y llama a Services.
+2. **Hook (El Gerente):** gestiona estado de React, sincronización externa solo cuando hace falta, formatea datos para la vista y llama a Services.
 3. **Service (El Obrero):** TypeScript puro, realiza la comunicación HTTP. Sin dependencias de React.
 
 ---
@@ -164,6 +164,7 @@ services/
 
 Reglas:
 - ✅ `authStore.ts` con Zustand — token, usuario, `isGuest`, `loadToken()`, `setAuth()`, `setAsGuest()`, `clearAuth()`
+- ✅ La hidratación inicial de sesión sale de un bootstrap idempotente en entrypoint/store, no de un `useEffect` genérico de montaje
 - ✅ Datos del servidor (entidades) → React Query (`useQuery`/`useMutation` en hooks)
 - ❌ No guardar listas de entidades en Zustand (eso va en React Query cache)
 - ❌ No usar Redux Toolkit en este template
@@ -184,11 +185,12 @@ Estructura:
 ```
 hooks/
 ├── useAuth.ts
-├── useFetch.ts
-├── useStorage.ts
+├── useProducts.ts
 ├── useFormState.ts
 └── useToast.ts        ← Notificaciones toast estandarizadas
 ```
+
+Los hooks no existen para envolver cualquier `Promise` en un `useEffect` genérico. Si el dato viene del servidor, el patrón por defecto es React Query.
 
 ### `src/types/`
 

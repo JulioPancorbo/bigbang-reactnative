@@ -17,6 +17,7 @@ Antes de cualquier acción, lee `docs/agent-instructions.md`. Define el flujo co
 - **TypeScript:** Sin `any`. Todas las funciones con tipo de retorno explícito.
 - **Logs:** Nunca `console.log`. Usar `src/services/logger.ts`.
 - **Errores de API:** Siempre en el hook (`onError`). Nunca en la screen. Nunca `Alert.alert()` directo. Todo proyecto debe tener `useToast` + `<Toast />` y `ErrorBoundary` en `App.tsx`.
+- **useEffect:** Solo para sincronizar con sistemas externos o APIs imperativas. No usarlo para derivar estado desde props/state, encadenar cálculos, reaccionar a eventos de usuario, disparar submits/POST ni como wrapper genérico de fetch. Para datos del servidor usar React Query; para acciones del usuario, handlers o `useMutation`; para bootstrap único de app, inicialización idempotente en entrypoint/store.
 - **Gestor de paquetes:** `pnpm` preferido. Si no está disponible, preguntar antes de usar `npm`.
 - **Componentes:** Máximo 300 líneas por archivo. Sin archivos `.styles.ts`.
 - **App shell:** `App.tsx` debe usar `SafeAreaProvider` como provider global, `QueryClientProvider`, `ErrorBoundary`, `NavigationContainer`, `RootNavigator` y `<Toast />` como último hijo. En desarrollo, `verifyInstallation()` de Nativewind va dentro de `if (__DEV__)`.
