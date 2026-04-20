@@ -45,6 +45,7 @@ Antes de cualquier acción, lee `docs/agent-instructions.md`. Define el flujo co
 | Tests | `docs/testing-ci.md` |
 | Pantallas con formularios / inputs | `docs/templates-snippets.md` (sección KeyboardAvoidingView) |
 | Loading states / skeleton | `docs/hooks-and-state.md` (sección Loading States y Skeleton) |
+| Maquetación desde Google Stitch | Skill `stitch-to-reactnative` (`.github/skills/stitch-to-reactnative/SKILL.md`) |
 
 ---
 
