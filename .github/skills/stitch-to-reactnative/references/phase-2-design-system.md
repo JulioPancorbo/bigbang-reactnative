@@ -5,8 +5,8 @@ This phase applies the Stitch design tokens to the project's `tailwind.config.js
 ## Docs to Read
 
 - `references/stitch-specifics.md` — Token priority, font name mapping
-- `docs/core/nativewind-theme.md` — NativeWind theme conventions
-- `docs/core/project-setup.md` — Project configuration patterns
+- [docs/core/nativewind-theme.md](docs/core/nativewind-theme.md) — NativeWind theme conventions
+- [docs/core/project-setup.md](docs/core/project-setup.md) — Project configuration patterns
 
 ## Input
 

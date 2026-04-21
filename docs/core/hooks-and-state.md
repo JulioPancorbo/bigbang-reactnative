@@ -203,7 +203,7 @@ export function ProductsScreen(): React.JSX.Element {
 }
 ```
 
-> Para la plantilla completa de skeleton ver `docs/core/templates-snippets.md` (sección "Loading states — Skeleton con boneyard").
+> Para la plantilla completa de skeleton ver [templates-snippets.md](./templates-snippets.md) (sección "Loading states — Skeleton con boneyard").
 
 ---
 

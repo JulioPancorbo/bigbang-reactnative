@@ -2,7 +2,7 @@
 
 ## Docs to Read
 
-1. **`docs/core/navigation-patterns.md`** — Read the ENTIRE file. It contains the complete code for:
+1. **[docs/core/navigation-patterns.md](docs/core/navigation-patterns.md)** — Read the ENTIRE file. It contains the complete code for:
    - `navigation-types.ts` — All ParamLists, typed props, and `declare global`
    - `hooks.ts` — Typed navigation hooks (useRootNavigation, useAuthNavigation, useAppNavigation)
    - `RootNavigator.tsx` — Entry point with auth logic
@@ -12,7 +12,7 @@
    - `index.ts` — Re-exports everything
    - Navigation hierarchy explanation
 
-2. **`docs/core/templates-snippets.md`** — Read the sections:
+2. **[docs/core/templates-snippets.md](docs/core/templates-snippets.md)** — Read the sections:
    - `navigation-types.ts` — Same content as above (cross-reference)
    - Navigators base section (AuthStack, AppTabs, AppStack, RootNavigator, index.ts)
 
@@ -22,7 +22,7 @@
 
 ### Step 5.1 — Create `src/navigation/navigation-types.ts`
 
-Copy the COMPLETE type definitions from `docs/core/navigation-patterns.md` section `navigation-types.ts`:
+Copy the COMPLETE type definitions from [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) section `navigation-types.ts`:
 
 Must include ALL of these:
 - `RootStackParamList` — Auth and App
@@ -37,7 +37,7 @@ Must include ALL of these:
 
 ### Step 5.2 — Create `src/navigation/hooks.ts`
 
-Copy from `docs/core/navigation-patterns.md` section `hooks.ts`:
+Copy from [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) section `hooks.ts`:
 - `useRootNavigation()` — typed for RootStackParamList
 - `useAuthNavigation()` — typed for AuthStackParamList
 - `useAppNavigation()` — typed for AppStackParamList
@@ -46,7 +46,7 @@ All must import types from `./navigation-types` (relative within navigation is O
 
 ### Step 5.3 — Create `src/navigation/RootNavigator.tsx`
 
-Copy from `docs/core/navigation-patterns.md` section `RootNavigator.tsx`:
+Copy from [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) section `RootNavigator.tsx`:
 - Creates `NativeStackNavigator<RootStackParamList>`
 - Reads `useAuthStore()` for `token`, `isGuest`, and `isLoaded`
 - Returns `null` while `!isLoaded`
@@ -57,7 +57,7 @@ Copy from `docs/core/navigation-patterns.md` section `RootNavigator.tsx`:
 
 ### Step 5.4 — Create `src/navigation/stacks/AuthStack.tsx`
 
-Copy from `docs/core/navigation-patterns.md` / `docs/core/templates-snippets.md`:
+Copy from [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) / [docs/core/templates-snippets.md](docs/core/templates-snippets.md):
 - `NativeStackNavigator<AuthStackParamList>`
 - Screens: Welcome, Login, Register
 - `headerShown: false`
@@ -65,7 +65,7 @@ Copy from `docs/core/navigation-patterns.md` / `docs/core/templates-snippets.md`
 
 ### Step 5.5 — Create `src/navigation/stacks/AppStack.tsx`
 
-Copy from `docs/core/navigation-patterns.md` / `docs/core/templates-snippets.md`:
+Copy from [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) / [docs/core/templates-snippets.md](docs/core/templates-snippets.md):
 - `NativeStackNavigator<AppStackParamList>`
 - First screen: `MainTabs` → component={AppTabs}
 - Full-screen pages commented out (ProductDetail, Settings, EditProfile)
@@ -73,7 +73,7 @@ Copy from `docs/core/navigation-patterns.md` / `docs/core/templates-snippets.md`
 
 ### Step 5.6 — Create `src/navigation/stacks/AppTabs.tsx`
 
-Copy from `docs/core/navigation-patterns.md` / `docs/core/templates-snippets.md`:
+Copy from [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) / [docs/core/templates-snippets.md](docs/core/templates-snippets.md):
 - `BottomTabNavigator<AppTabsParamList>`
 - Tabs: Home, Profile
 - Uses `Ionicons` from `@expo/vector-icons` for tab icons

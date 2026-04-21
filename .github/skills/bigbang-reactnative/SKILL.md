@@ -251,7 +251,7 @@ These rules are embedded in every subagent prompt above. They also serve as a qu
 
 ### Expo & NativeWind
 - **NEVER** bootstrap the project around `expo@latest` or an Expo template `@latest` when Expo Go compatibility matters
-- **ALWAYS** align the project to the stable Expo SDK line documented in `docs/core/project-setup.md` before the first run
+- **ALWAYS** align the project to the stable Expo SDK line documented in [docs/core/project-setup.md](docs/core/project-setup.md) before the first run
 - **ALWAYS** validate the SDK line with `npx expo-doctor@latest` before starting the app for the first time
 - **ALWAYS** use the validated NativeWind v4 setup for this template: Tailwind preset + Babel preset config + Metro `withNativeWind` + `global.css`
 - **NEVER** add `TailwindProvider` in `App.tsx` for this template baseline

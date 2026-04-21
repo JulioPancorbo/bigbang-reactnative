@@ -25,22 +25,22 @@
 
 ## Instrucciones para el agente IA
 
-**Lee primero `docs/core/agent-instructions.md`.** Ese archivo define el flujo completo paso a paso con verificaciones obligatorias por cada doc.
+**Lee primero [docs/core/agent-instructions.md](docs/core/agent-instructions.md).** Ese archivo define el flujo completo paso a paso con verificaciones obligatorias por cada doc.
 
 Orden de lectura y ejecución:
 
 | # | Doc                             | Cuándo leer                             |
 | - | ------------------------------- | ---------------------------------------- |
-| 0 | `docs/core/agent-instructions.md`  | Antes de cualquier acción               |
-| 1 | `docs/core/project-setup.md`       | Para crear el proyecto base              |
-| 2 | `docs/core/structure-guide.md`     | Para entender la arquitectura            |
-| 3 | `docs/core/conventions.md`         | Para aplicar convenciones de código     |
-| 4 | `docs/core/nativewind-theme.md`    | Para configurar estilos                  |
-| 5 | `docs/core/navigation-patterns.md` | Para crear navegación tipada            |
-| 6 | `docs/core/templates-snippets.md`  | Para crear pantallas base y navegadores  |
-| 7 | `docs/core/services-and-api.md`    | Para capa de servicios con Axios         |
-| 8 | `docs/core/hooks-and-state.md`     | Para hooks y estado global               |
-| 9 | `docs/core/testing-ci.md`          | Para configurar tests                    |
+| 0 | [docs/core/agent-instructions.md](docs/core/agent-instructions.md)  | Antes de cualquier acción               |
+| 1 | [docs/core/project-setup.md](docs/core/project-setup.md)       | Para crear el proyecto base              |
+| 2 | [docs/core/structure-guide.md](docs/core/structure-guide.md)     | Para entender la arquitectura            |
+| 3 | [docs/core/conventions.md](docs/core/conventions.md)         | Para aplicar convenciones de código     |
+| 4 | [docs/core/nativewind-theme.md](docs/core/nativewind-theme.md)    | Para configurar estilos                  |
+| 5 | [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) | Para crear navegación tipada            |
+| 6 | [docs/core/templates-snippets.md](docs/core/templates-snippets.md)  | Para crear pantallas base y navegadores  |
+| 7 | [docs/core/services-and-api.md](docs/core/services-and-api.md)    | Para capa de servicios con Axios         |
+| 8 | [docs/core/hooks-and-state.md](docs/core/hooks-and-state.md)     | Para hooks y estado global               |
+| 9 | [docs/core/testing-ci.md](docs/core/testing-ci.md)          | Para configurar tests                    |
 
 ---
 

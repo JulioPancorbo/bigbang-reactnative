@@ -2,7 +2,7 @@
 
 ## Docs to Read
 
-1. **`docs/core/templates-snippets.md`** — Read the ENTIRE file. It contains the complete code for:
+1. **[docs/core/templates-snippets.md](docs/core/templates-snippets.md)** — Read the ENTIRE file. It contains the complete code for:
    - `Button` component (Button.tsx + index.ts)
    - `ErrorBoundary` component (class component + index.ts)
    - `useToast` hook (already created in Phase 4, cross-reference)
@@ -16,7 +16,7 @@
 
 ### Step 6.1 — Create `src/components/Button/Button.tsx`
 
-Copy from `docs/core/templates-snippets.md` section "Componente reutilizable — Button":
+Copy from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "Componente reutilizable — Button":
 - `Variant` type: 'primary' | 'secondary' | 'danger'
 - `ButtonProps` type with label, onPress, variant, disabled
 - Uses `TouchableOpacity` with `className` (Nativewind)
@@ -30,7 +30,7 @@ export { Button } from './Button'
 
 ### Step 6.3 — Create `src/components/ErrorBoundary/ErrorBoundary.tsx`
 
-Copy from `docs/core/templates-snippets.md` section "ErrorBoundary":
+Copy from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "ErrorBoundary":
 - **Class component** (this is the ONE exception where class components are allowed)
 - Catches rendering errors with `getDerivedStateFromError` and `componentDidCatch`
 - Shows fallback UI with "Algo salió mal" message and retry button
@@ -44,7 +44,7 @@ export { ErrorBoundary } from './ErrorBoundary'
 
 ### Step 6.5 — Create `src/screens/Welcome/index.tsx`
 
-Copy from `docs/core/templates-snippets.md` section "Welcome — Pantalla de bienvenida":
+Copy from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "Welcome — Pantalla de bienvenida":
 - Uses `SafeAreaView` from `react-native-safe-area-context`
 - Shows app title and description
 - Button "Continuar" navigates to Login
@@ -52,7 +52,7 @@ Copy from `docs/core/templates-snippets.md` section "Welcome — Pantalla de bie
 
 ### Step 6.6 — Create `src/screens/Login/index.tsx`
 
-Copy from `docs/core/templates-snippets.md` section "Login — Inicio de sesión":
+Copy from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "Login — Inicio de sesión":
 - Uses `useForm` from `@/hooks/useFormState` for form management
 - Uses `useAuth` from `@/hooks/useAuth` for login
 - Validates email with `isValidEmail` from `@/utils/validators`
@@ -64,7 +64,7 @@ Copy from `docs/core/templates-snippets.md` section "Login — Inicio de sesión
 
 ### Step 6.7 — Create `src/screens/Register/index.tsx`
 
-Copy from `docs/core/templates-snippets.md` section "Register — Registro":
+Copy from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "Register — Registro":
 - Uses `useForm` with fields: name, email, password, confirmPassword
 - Uses `useAuth` for register
 - Validates: name required, email valid, password >= 8, passwords match
@@ -74,7 +74,7 @@ Copy from `docs/core/templates-snippets.md` section "Register — Registro":
 
 ### Step 6.8 — Create `src/screens/Home/index.tsx`
 
-Copy the **COMPLETE code** from `docs/core/templates-snippets.md` section "Home — Pantalla principal (dentro de tabs)". Do NOT simplify or create a placeholder — the template includes real mock data and a full layout:
+Copy the **COMPLETE code** from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "Home — Pantalla principal (dentro de tabs)". Do NOT simplify or create a placeholder — the template includes real mock data and a full layout:
 - `RECOMMENDED` and `NEW_APARTMENTS` mock data arrays (hardcoded constants at the top)
 - `SafeAreaView` + outer `ScrollView` (vertical)
 - Header: avatar image, greeting with `user?.name` / `'Invitado'` (via `useAuth`), notifications icon
@@ -86,7 +86,7 @@ Copy the **COMPLETE code** from `docs/core/templates-snippets.md` section "Home 
 
 ### Step 6.9 — Create `src/screens/Profile/index.tsx`
 
-Copy from `docs/core/templates-snippets.md` section "Profile — Perfil de usuario":
+Copy from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "Profile — Perfil de usuario":
 - Uses `useAuth` to get user data, isGuest flag, and logout function
 - **IF guest mode (isGuest === true):** Show different UI with message "Eres un invitado" + buttons to create account or logout
 - **IF authenticated:** Shows user name and email + "Cerrar sesión" button with `variant="danger"` calling `logout`
@@ -94,7 +94,7 @@ Copy from `docs/core/templates-snippets.md` section "Profile — Perfil de usuar
 
 ### Step 6.10 — Create `src/App.tsx`
 
-Copy from `docs/core/templates-snippets.md` section "App.tsx — Punto de entrada":
+Copy from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "App.tsx — Punto de entrada":
 Must include ALL of these providers/components in the correct nesting order:
 1. `SafeAreaProvider` (outermost provider)
 2. `QueryClientProvider`

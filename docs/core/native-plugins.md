@@ -617,4 +617,4 @@ async function shareFile(remoteUri: string, filename: string): Promise<void> {
 - Siempre añadir los permisos necesarios en `app.json` en el mismo paso que la instalación.
 - Las API keys y secrets nunca van hardcodeados — siempre en variables `EXPO_PUBLIC_*` en `.env`.
 - Tras instalar cualquier plugin con código nativo, si se usa Dev Build, reconstruir antes de probar.
-- Registrar cualquier plugin nuevo añadido al proyecto en `docs/core/changelog.md`.
+- Registrar cualquier plugin nuevo añadido al proyecto en [changelog.md](./changelog.md).

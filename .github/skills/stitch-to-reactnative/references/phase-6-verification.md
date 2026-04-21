@@ -4,8 +4,8 @@ This phase validates the entire conversion: TypeScript compilation, anti-pattern
 
 ## Docs to Read
 
-- `docs/core/conventions.md` — All project conventions for validation
-- `docs/core/structure-guide.md` — Expected folder structure
+- [docs/core/conventions.md](docs/core/conventions.md) — All project conventions for validation
+- [docs/core/structure-guide.md](docs/core/structure-guide.md) — Expected folder structure
 
 ## Input
 

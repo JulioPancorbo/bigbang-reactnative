@@ -2,13 +2,13 @@
 
 ## Docs to Read
 
-1. **`docs/core/hooks-and-state.md`** — Read the ENTIRE file. It contains the complete code for:
+1. **[docs/core/hooks-and-state.md](docs/core/hooks-and-state.md)** — Read the ENTIRE file. It contains the complete code for:
    - `authStore.ts` — Zustand store for auth session
    - `useAuth.ts` — Hook connecting authStore + auth service
    - `useFormState.ts` — Generic form management hook with validation
    - Usage patterns and React Query setup
 
-2. **`docs/core/templates-snippets.md`** — Read the section `useToast` for the toast notification hook.
+2. **[docs/core/templates-snippets.md](docs/core/templates-snippets.md)** — Read the section `useToast` for the toast notification hook.
 
 ---
 
@@ -16,7 +16,7 @@
 
 ### Step 4.1 — Create `src/store/authStore.ts`
 
-Copy the COMPLETE Zustand store code from `docs/core/hooks-and-state.md` section "Zustand para auth":
+Copy the COMPLETE Zustand store code from [docs/core/hooks-and-state.md](docs/core/hooks-and-state.md) section "Zustand para auth":
 - `AuthUser` type with id, name, email, role_id
 - `AuthStore` type with: token, user, isGuest, isLoaded, setAuth, setAsGuest, clearAuth, loadToken
 - `useAuthStore` created with `create<AuthStore>()`
@@ -27,7 +27,7 @@ Copy the COMPLETE Zustand store code from `docs/core/hooks-and-state.md` section
 
 ### Step 4.2 — Create `src/hooks/useAuth.ts`
 
-Copy the COMPLETE code from `docs/core/hooks-and-state.md` section "useAuth":
+Copy the COMPLETE code from [docs/core/hooks-and-state.md](docs/core/hooks-and-state.md) section "useAuth":
 - Imports from `@/store/authStore` and `@/services/auth`
 - `login()`, `loginGoogle()`, `logout()` functions
 - `loginAsGuest()` function for guest mode (no API call, just sets store state)
@@ -36,7 +36,7 @@ Copy the COMPLETE code from `docs/core/hooks-and-state.md` section "useAuth":
 
 ### Step 4.3 — Create `src/hooks/useFormState.ts`
 
-Copy the COMPLETE code from `docs/core/hooks-and-state.md` section "useForm":
+Copy the COMPLETE code from [docs/core/hooks-and-state.md](docs/core/hooks-and-state.md) section "useForm":
 - Generic `useForm<T>()` hook
 - Accepts `initialValues`, `onSubmit`, `validate` (optional)
 - Returns: values, errors, loading, handleChange, handleSubmit
@@ -44,7 +44,7 @@ Copy the COMPLETE code from `docs/core/hooks-and-state.md` section "useForm":
 
 ### Step 4.4 — Create `src/hooks/useToast.ts`
 
-Copy the COMPLETE code from `docs/core/templates-snippets.md` section "useToast":
+Copy the COMPLETE code from [docs/core/templates-snippets.md](docs/core/templates-snippets.md) section "useToast":
 - Uses `react-native-toast-message` under the hood
 - `ToastType`: 'success' | 'error' | 'info'
 - Returns: show, showError, showSuccess, showInfo

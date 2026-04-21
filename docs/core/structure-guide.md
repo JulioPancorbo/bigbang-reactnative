@@ -123,7 +123,7 @@ ErrorBoundary/
 └── index.ts
 ```
 
-Ver detalle completo en `docs/core/navigation-patterns.md`.
+Ver detalle completo en [navigation-patterns.md](./navigation-patterns.md).
 
 El `RootNavigator` debe comprobar `useAuthStore` para decidir si mostrar `AuthStack` o `AppStack`, sin depender de `AsyncStorage` directamente.
 
@@ -145,7 +145,7 @@ navigation/
 
 ### `src/services/`
 
-Ver detalle completo en `docs/core/services-and-api.md`.
+Ver detalle completo en [services-and-api.md](./services-and-api.md).
 
 Este proyecto usa un patrón genérico CRUD con métodos reutilizables para cualquier entidad del backend, incluyendo rutas anidadas (`/entity/{id}/subEntity/{id}`).
 
@@ -175,11 +175,11 @@ store/
 └── authStore.ts   ← Estado de sesión (token + user + isGuest + loadToken)
 ```
 
-Ver detalle completo en `docs/core/hooks-and-state.md`.
+Ver detalle completo en [hooks-and-state.md](./hooks-and-state.md).
 
 ### `src/hooks/`
 
-Ver detalle completo en `docs/core/hooks-and-state.md`.
+Ver detalle completo en [hooks-and-state.md](./hooks-and-state.md).
 
 Estructura:
 ```
@@ -275,7 +275,7 @@ Reglas:
 - ❌ No crear archivos TypeScript de colores/spacing
 - ❌ No usar estilos inline en lugar de clases Tailwind
 
-Ver instalación y configuración completa en `docs/core/nativewind-theme.md`.
+Ver instalación y configuración completa en [nativewind-theme.md](./nativewind-theme.md).
 
 ### `src/assets/`
 
