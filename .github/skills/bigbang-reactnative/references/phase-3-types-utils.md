@@ -2,11 +2,11 @@
 
 ## Docs to Read
 
-1. **`docs/templates-snippets.md`** — Read the section `types/models.ts` for the base model types.
-2. **`docs/structure-guide.md`** — Read the sections:
+1. **`docs/core/templates-snippets.md`** — Read the section `types/models.ts` for the base model types.
+2. **`docs/core/structure-guide.md`** — Read the sections:
    - `src/types/` — rules and example for models.ts
    - `src/utils/` — rules, structure, and code examples for constants, validators, formatters, helpers
-3. **`docs/conventions.md`** — Read the section "Reglas de TypeScript" for type conventions (use `type` not `interface`, PascalCase, etc.)
+3. **`docs/core/conventions.md`** — Read the section "Reglas de TypeScript" for type conventions (use `type` not `interface`, PascalCase, etc.)
 
 ---
 
@@ -14,7 +14,7 @@
 
 ### Step 3.1 — Create `src/types/models.ts`
 
-Copy the types from `docs/templates-snippets.md` section `types/models.ts`:
+Copy the types from `docs/core/templates-snippets.md` section `types/models.ts`:
 - `User`, `Product`, `Order`, `OrderItem` types
 - All using `type` keyword (NOT `interface`)
 
@@ -44,20 +44,20 @@ export * from './api'
 
 ### Step 3.4 — Create `src/utils/constants.ts`
 
-Copy from `docs/structure-guide.md` section `src/utils/`:
+Copy from `docs/core/structure-guide.md` section `src/utils/`:
 - `API_BASE_URL` from `process.env.EXPO_PUBLIC_API_URL`
 - `API_TIMEOUT = 10000`
 - `MAX_RETRY_ATTEMPTS = 3`
 
 ### Step 3.5 — Create `src/utils/validators.ts`
 
-Copy from `docs/structure-guide.md` / `docs/conventions.md`:
+Copy from `docs/core/structure-guide.md` / `docs/core/conventions.md`:
 - `isValidEmail(email: string): boolean` — regex validation
 - `isValidPassword(password: string): boolean` — minimum 8 characters
 
 ### Step 3.6 — Create `src/utils/formatters.ts`
 
-Copy from `docs/structure-guide.md`:
+Copy from `docs/core/structure-guide.md`:
 - `formatCurrency(amount: number, currency?: string): string` — using Intl.NumberFormat
 - `formatDate(date: Date): string` — using toLocaleDateString
 

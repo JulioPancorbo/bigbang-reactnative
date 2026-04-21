@@ -2,9 +2,9 @@
 
 ## Docs to Read
 
-1. **`docs/structure-guide.md`** — Read the section "Checklist de Validación Completo" for the full validation checklist (~30 items across all categories).
+1. **`docs/core/structure-guide.md`** — Read the section "Checklist de Validación Completo" for the full validation checklist (~30 items across all categories).
 
-2. **`docs/testing-ci.md`** — Read the sections:
+2. **`docs/core/testing-ci.md`** — Read the sections:
    - "Instalación" — dev dependencies for testing
    - `jest.config.js` — exact configuration
    - "Estructura de tests" — folder structure
@@ -32,7 +32,7 @@ If there are errors:
 
 ### Step 7.2 — Run Full Validation Checklist
 
-Go through the COMPLETE checklist from `docs/structure-guide.md` section "Checklist de Validación Completo". Check EVERY item:
+Go through the COMPLETE checklist from `docs/core/structure-guide.md` section "Checklist de Validación Completo". Check EVERY item:
 
 **Structure General:**
 - [ ] Folders in kebab-case
@@ -124,14 +124,14 @@ Or manually check with grep/Select-String:
 
 ### Step 7.4 — Install Test Dependencies
 
-Read `docs/testing-ci.md` section "Instalación" and run:
+Read `docs/core/testing-ci.md` section "Instalación" and run:
 ```bash
 pnpm add -D jest @testing-library/react-native @testing-library/jest-native @types/jest jest-expo
 ```
 
 ### Step 7.5 — Create `jest.config.js`
 
-Copy the exact config from `docs/testing-ci.md`:
+Copy the exact config from `docs/core/testing-ci.md`:
 - `preset: 'jest-expo'`
 - `moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' }`
 - `transformIgnorePatterns` for React Native modules
@@ -154,14 +154,14 @@ tests/
 
 ### Step 7.7 — Create Example Test: `tests/unit/store/authStore.test.ts`
 
-Copy from `docs/testing-ci.md` section "Unit test — Zustand store":
+Copy from `docs/core/testing-ci.md` section "Unit test — Zustand store":
 - Tests: starts unauthenticated, sets token and user on login, clears on logout
 - Uses `useAuthStore.getState()` and `useAuthStore.setState()`
 - Resets store in `beforeEach`
 
 ### Step 7.8 — Create Mock: `tests/__mocks__/@/services/api.ts`
 
-Copy from `docs/testing-ci.md` section "Mock de service":
+Copy from `docs/core/testing-ci.md` section "Mock de service":
 - `getProducts`, `getUser`, `parseApiError` as `jest.fn()`
 
 ---

@@ -13,7 +13,7 @@ Pasos para crear un proyecto desde cero. Seguir en orden. El agente debe verific
 
 - Node.js LTS (v20+)
 - Git inicializado en el proyecto
-- **`pnpm` recomendado.** Si no está instalado, ver Regla 0 en `docs/agent-instructions.md`.
+- **`pnpm` recomendado.** Si no está instalado, ver Regla 0 en `docs/core/agent-instructions.md`.
 
 ---
 
@@ -307,7 +307,7 @@ export default function App() {
 
 Este bootstrap se dispara una vez por carga de app, fuera del render y sin depender de un `useEffect` de montaje.
 
-ℹ️ **SafeAreaProvider** envuelve toda la app en un solo alto para que todas las screens respeten el safe area del dispositivo (status bar, notch, dynamic island). Luego cada screen usa individualmente `<SafeAreaView>` (ver `docs/conventions.md` para la convención).
+ℹ️ **SafeAreaProvider** envuelve toda la app en un solo alto para que todas las screens respeten el safe area del dispositivo (status bar, notch, dynamic island). Luego cada screen usa individualmente `<SafeAreaView>` (ver `docs/core/conventions.md` para la convención).
 
 ---
 
@@ -342,4 +342,4 @@ npm run ios
 
 ---
 
-> Siguientes pasos: `docs/structure-guide.md` → `docs/navigation-patterns.md` → `docs/templates-snippets.md`
+> Siguientes pasos: `docs/core/structure-guide.md` → `docs/core/navigation-patterns.md` → `docs/core/templates-snippets.md`

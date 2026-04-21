@@ -342,7 +342,7 @@ After all phases report COMPLETE:
       - Social login (expo-auth-session)
       - Background blur decorativos
    4. Implementa la lógica de negocio: conecta los hooks stub con endpoints reales.
-   5. Si tienes docs-project/, úsalos para completar modelos, endpoints y lógica.
+   5. Si tienes docs/workspace/, úsalos para completar modelos, endpoints y lógica.
    ```
 
 ---

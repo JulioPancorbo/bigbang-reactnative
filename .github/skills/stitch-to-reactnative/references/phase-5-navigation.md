@@ -4,8 +4,8 @@ This phase registers all converted screens in the navigation system.
 
 ## Docs to Read
 
-- `docs/navigation-patterns.md` — Navigation architecture and patterns
-- `docs/templates-snippets.md` — Stack/Tab registration templates
+- `docs/core/navigation-patterns.md` — Navigation architecture and patterns
+- `docs/core/templates-snippets.md` — Stack/Tab registration templates
 
 ## Input
 

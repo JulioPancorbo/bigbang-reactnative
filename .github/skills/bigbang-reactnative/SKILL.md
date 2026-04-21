@@ -251,7 +251,7 @@ These rules are embedded in every subagent prompt above. They also serve as a qu
 
 ### Expo & NativeWind
 - **NEVER** bootstrap the project around `expo@latest` or an Expo template `@latest` when Expo Go compatibility matters
-- **ALWAYS** align the project to the stable Expo SDK line documented in `docs/project-setup.md` before the first run
+- **ALWAYS** align the project to the stable Expo SDK line documented in `docs/core/project-setup.md` before the first run
 - **ALWAYS** validate the SDK line with `npx expo-doctor@latest` before starting the app for the first time
 - **ALWAYS** use the validated NativeWind v4 setup for this template: Tailwind preset + Babel preset config + Metro `withNativeWind` + `global.css`
 - **NEVER** add `TailwindProvider` in `App.tsx` for this template baseline
@@ -307,7 +307,7 @@ After all 7 phases report COMPLETE:
    2. Configure `.env` with the real URL of your Laravel API:
       - Local development: EXPO_PUBLIC_API_URL=http://localhost:8000/api
       - Production:        EXPO_PUBLIC_API_URL=https://your-domain.com/api
-   3. Create a `docs-project/` folder with the concrete project documents
+   3. Create a `docs/workspace/` folder with the concrete project documents
       (screens, models, endpoints, brief, and any project-specific specification)
       and/or start building and designing screens directly.
       The `.github/copilot-instructions.md` file ensures the agent follows

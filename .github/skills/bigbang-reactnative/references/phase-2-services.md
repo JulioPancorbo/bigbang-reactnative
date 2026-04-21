@@ -2,7 +2,7 @@
 
 ## Docs to Read
 
-1. **`docs/services-and-api.md`** — Read the ENTIRE file. It contains the complete code for:
+1. **`docs/core/services-and-api.md`** — Read the ENTIRE file. It contains the complete code for:
    - `api.ts` — Axios client with interceptors + ALL generic CRUD methods (getEntity, getSubEntity, getSubSubEntity, addEntity, addSubEntity, addSubSubEntity, updateEntity, updateSubEntity, updateSubSubEntity, deleteEntity, deleteSubEntity, deleteSubSubEntity) + upload with progress (uploadEntityFiles, updateEntityFiles)
    - `auth.ts` — Login, loginGoogle, loginFacebook, forgotPassword, logout, getMe
    - `storage.ts` — Token management with expo-secure-store (getToken, setToken, removeToken)
@@ -14,7 +14,7 @@
 
 ### Step 2.1 — Create `src/services/api.ts`
 
-Copy the COMPLETE code from `docs/services-and-api.md`:
+Copy the COMPLETE code from `docs/core/services-and-api.md`:
 - Axios client with `baseURL: process.env.EXPO_PUBLIC_API_URL`
 - Request interceptor that injects Bearer token from `getToken()`
 - Response interceptor that catches 401 and removes token
@@ -26,7 +26,7 @@ Copy the COMPLETE code from `docs/services-and-api.md`:
 
 ### Step 2.2 — Create `src/services/auth.ts`
 
-Copy the COMPLETE code from `docs/services-and-api.md` section `auth.ts`:
+Copy the COMPLETE code from `docs/core/services-and-api.md` section `auth.ts`:
 - `LoginPayload` type
 - `AuthResponse` type
 - `login()`, `loginGoogle()`, `loginFacebook()`, `forgotPassword()`, `logout()`, `getMe<T>()`
@@ -35,14 +35,14 @@ Copy the COMPLETE code from `docs/services-and-api.md` section `auth.ts`:
 
 ### Step 2.3 — Create `src/services/storage.ts`
 
-Copy the exact code from `docs/services-and-api.md` section `storage.ts`:
+Copy the exact code from `docs/core/services-and-api.md` section `storage.ts`:
 - Uses `expo-secure-store` (NOT AsyncStorage)
 - `getToken()`, `setToken()`, `removeToken()` functions
 - Constant `TOKEN_KEY = 'auth-token'`
 
 ### Step 2.4 — Create `src/services/logger.ts`
 
-Copy the code from `docs/services-and-api.md` section `logger.ts`:
+Copy the code from `docs/core/services-and-api.md` section `logger.ts`:
 - `isDev` check based on `process.env.NODE_ENV`
 - `logger.info()`, `logger.warn()`, `logger.error()` methods
 - `info` and `warn` only log in dev mode

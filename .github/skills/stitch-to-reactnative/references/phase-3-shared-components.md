@@ -6,8 +6,8 @@ This phase creates reusable components identified during Phase 1 analysis.
 
 - `references/html-to-rn-mapping.md` — HTML to RN element and class mapping
 - `references/stitch-specifics.md` — Icon mapping, web-only effects
-- `docs/templates-snippets.md` — Component template patterns
-- `docs/conventions.md` — Naming conventions, imports
+- `docs/core/templates-snippets.md` — Component template patterns
+- `docs/core/conventions.md` — Naming conventions, imports
 
 ## Input
 

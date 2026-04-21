@@ -25,22 +25,22 @@
 
 ## Instrucciones para el agente IA
 
-**Lee primero `docs/agent-instructions.md`.** Ese archivo define el flujo completo paso a paso con verificaciones obligatorias por cada doc.
+**Lee primero `docs/core/agent-instructions.md`.** Ese archivo define el flujo completo paso a paso con verificaciones obligatorias por cada doc.
 
 Orden de lectura y ejecución:
 
 | # | Doc                             | Cuándo leer                             |
 | - | ------------------------------- | ---------------------------------------- |
-| 0 | `docs/agent-instructions.md`  | Antes de cualquier acción               |
-| 1 | `docs/project-setup.md`       | Para crear el proyecto base              |
-| 2 | `docs/structure-guide.md`     | Para entender la arquitectura            |
-| 3 | `docs/conventions.md`         | Para aplicar convenciones de código     |
-| 4 | `docs/nativewind-theme.md`    | Para configurar estilos                  |
-| 5 | `docs/navigation-patterns.md` | Para crear navegación tipada            |
-| 6 | `docs/templates-snippets.md`  | Para crear pantallas base y navegadores  |
-| 7 | `docs/services-and-api.md`    | Para capa de servicios con Axios         |
-| 8 | `docs/hooks-and-state.md`     | Para hooks y estado global               |
-| 9 | `docs/testing-ci.md`          | Para configurar tests                    |
+| 0 | `docs/core/agent-instructions.md`  | Antes de cualquier acción               |
+| 1 | `docs/core/project-setup.md`       | Para crear el proyecto base              |
+| 2 | `docs/core/structure-guide.md`     | Para entender la arquitectura            |
+| 3 | `docs/core/conventions.md`         | Para aplicar convenciones de código     |
+| 4 | `docs/core/nativewind-theme.md`    | Para configurar estilos                  |
+| 5 | `docs/core/navigation-patterns.md` | Para crear navegación tipada            |
+| 6 | `docs/core/templates-snippets.md`  | Para crear pantallas base y navegadores  |
+| 7 | `docs/core/services-and-api.md`    | Para capa de servicios con Axios         |
+| 8 | `docs/core/hooks-and-state.md`     | Para hooks y estado global               |
+| 9 | `docs/core/testing-ci.md`          | Para configurar tests                    |
 
 ---
 
@@ -50,24 +50,24 @@ Este repo contiene **dos capas de docs** que **nunca deben mezclarse**:
 
 | Carpeta | Contenido | Quién la mantiene |
 | --- | --- | --- |
-| `docs/` | **Convenciones del stack** — cómo escribir el código, patrones, plantillas, arquitectura. Igual para todos los proyectos. | Equipo base (este repo) |
-| `docs-project/` | **Especificaciones del proyecto concreto** — qué construir, pantallas propias, modelos de datos, endpoints reales. Única por proyecto. | El equipo de cada proyecto |
+| `docs/core/` | **Convenciones del stack** — cómo escribir el código, patrones, plantillas, arquitectura. Igual para todos los proyectos. | Equipo base (este repo) |
+| `docs/workspace/` | **Especificaciones del proyecto concreto** — qué construir, pantallas propias, modelos de datos, endpoints reales. Única por proyecto. | El equipo de cada proyecto |
 
 ### Flujo de uso del template
 
 ```
 1. Clonar este repo
-2. Crear carpeta docs-project/ con los ficheros del proyecto concreto
+2. Crear carpeta docs/workspace/ con los ficheros del proyecto concreto
    ├── brief.md      ← Qué hace la app, contexto del negocio
    ├── screens.md    ← Inventario de pantallas a construir
    ├── models.md     ← Entidades/tipos propios (User, Order, etc.)
    └── api.md        ← Endpoints del backend (rutas, payloads, auth)
 3. Llamar al agente: "Crea el proyecto siguiendo los docs"
-   → El agente lee docs-project/ (qué construir)
-     + docs/ (cómo construirlo)
+   → El agente lee docs/workspace/ (qué construir)
+     + docs/core/ (cómo construirlo)
 ```
 
-> `docs-project/` **no se incluye en este repo**. Cada proyecto lo crea desde cero. La carpeta está en `.gitignore` del template para evitar que documentación de un cliente se mezcle con las convenciones base.
+> `docs/workspace/` **no se incluye en este repo**. Cada proyecto lo crea desde cero. La carpeta está en `.gitignore` del template para evitar que documentación de un cliente se mezcle con las convenciones base.
 
 ---
 
@@ -122,21 +122,21 @@ src/
 
 ## Índice de documentos
 
-- [docs/agent-instructions.md](docs/agent-instructions.md) — Flujo y verificaciones para agentes
-- [docs/project-setup.md](docs/project-setup.md) — Bootstrap paso a paso
-- [docs/structure-guide.md](docs/structure-guide.md) — Arquitectura y reglas por carpeta
-- [docs/conventions.md](docs/conventions.md) — Naming, TypeScript, imports
-- [docs/nativewind-theme.md](docs/nativewind-theme.md) — Estilos con Tailwind
-- [docs/navigation-patterns.md](docs/navigation-patterns.md) — Navegación tipada
-- [docs/services-and-api.md](docs/services-and-api.md) — Servicios con Axios
-- [docs/hooks-and-state.md](docs/hooks-and-state.md) — Hooks y estado global
-- [docs/templates-snippets.md](docs/templates-snippets.md) — Plantillas de archivos
-- [docs/testing-ci.md](docs/testing-ci.md) — Tests y CI/CD
-- [docs/changelog.md](docs/changelog.md) — Historial de cambios
+- [docs/core/agent-instructions.md](docs/core/agent-instructions.md) — Flujo y verificaciones para agentes
+- [docs/core/project-setup.md](docs/core/project-setup.md) — Bootstrap paso a paso
+- [docs/core/structure-guide.md](docs/core/structure-guide.md) — Arquitectura y reglas por carpeta
+- [docs/core/conventions.md](docs/core/conventions.md) — Naming, TypeScript, imports
+- [docs/core/nativewind-theme.md](docs/core/nativewind-theme.md) — Estilos con Tailwind
+- [docs/core/navigation-patterns.md](docs/core/navigation-patterns.md) — Navegación tipada
+- [docs/core/services-and-api.md](docs/core/services-and-api.md) — Servicios con Axios
+- [docs/core/hooks-and-state.md](docs/core/hooks-and-state.md) — Hooks y estado global
+- [docs/core/templates-snippets.md](docs/core/templates-snippets.md) — Plantillas de archivos
+- [docs/core/testing-ci.md](docs/core/testing-ci.md) — Tests y CI/CD
+- [docs/core/changelog.md](docs/core/changelog.md) — Historial de cambios
 
 ### Para desarrolladores
 
-- [docs/angular-to-react-native.md](docs/angular-to-react-native.md) — Guía de transición desde Ionic/Angular (lectura humana)
+- [docs/core/angular-to-react-native.md](docs/core/angular-to-react-native.md) — Guía de transición desde Ionic/Angular (lectura humana)
 
 ---
 

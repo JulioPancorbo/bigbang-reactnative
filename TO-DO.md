@@ -11,9 +11,9 @@ i# TO-DO DOCUMENTATION
 * [X] Añadir plugins (cámara, archivos, pdf) en .md?
 * [X] Crear skill "create-project" que ejecute todo.
   * [X] Skill `bigbang-reactnative` movida al repo en `.copilot/skills/bigbang-reactnative/` — siempre instala stack completo, reference files apuntan a docs/ del repo (sincronización automática vía git).
-* [ ] Documentar la carpeta `docs-project/` para especificaciones del proyecto concreto.
+* [ ] Documentar la carpeta `docs/workspace/` para especificaciones del proyecto concreto.
   * [ ] Crear plantillas de: `brief.md`, `screens.md`, `models.md`, `api.md`
-  * [X] Actualizar `README.md` explicando la separación `docs/` (convenciones del stack) vs `docs-project/` (especificaciones del proyecto)
+  * [X] Actualizar `README.md` explicando la separación `docs/` (convenciones del stack) vs `docs/workspace/` (especificaciones del proyecto)
 * [X] Patrón de manejo de errores global (ErrorBoundary + sistema de toast/alerts estandarizado)
 * [ ] Estrategia offline / NetInfo (`@react-native-community/netinfo` + React Query `onlineManager`)
 * [X] Patrón de carga de imágenes optimizado (`expo-image` para caché y rendimiento en listas)

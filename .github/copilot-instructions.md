@@ -1,7 +1,7 @@
 # Copilot Instructions — React Native + Expo + TypeScript + Nativewind
 
 Este workspace es un **template base** para proyectos React Native.
-Antes de cualquier acción, lee `docs/agent-instructions.md`. Define el flujo completo con verificaciones obligatorias.
+Antes de cualquier acción, lee `docs/core/agent-instructions.md`. Define el flujo completo con verificaciones obligatorias.
 
 ---
 
@@ -32,19 +32,19 @@ Antes de cualquier acción, lee `docs/agent-instructions.md`. Define el flujo co
 
 | Tarea | Doc obligatorio |
 |---|---|
-| Crear proyecto desde cero | `docs/agent-instructions.md` (flujo completo PASO 1–10) |
-| Nueva pantalla o feature | `docs/agent-instructions.md` (sección "Añadir una nueva screen") |
-| Estilos / Tailwind | `docs/nativewind-theme.md` |
-| Navegación / rutas | `docs/navigation-patterns.md` |
-| Servicios / Axios / API | `docs/services-and-api.md` |
-| Hooks / React Query / Zustand | `docs/hooks-and-state.md` |
-| Plantillas de archivos | `docs/templates-snippets.md` |
-| Iconos o animaciones | `docs/animations-and-icons.md` |
-| Plugin nativo (cámara, mapas, PDF, etc.) | `docs/native-plugins.md` — leer **antes** de instalar |
-| Naming, TypeScript, imports | `docs/conventions.md` |
-| Tests | `docs/testing-ci.md` |
-| Pantallas con formularios / inputs | `docs/templates-snippets.md` (sección KeyboardAvoidingView) |
-| Loading states / skeleton | `docs/hooks-and-state.md` (sección Loading States y Skeleton) |
+| Crear proyecto desde cero | `docs/core/agent-instructions.md` (flujo completo PASO 1–10) |
+| Nueva pantalla o feature | `docs/core/agent-instructions.md` (sección "Añadir una nueva screen") |
+| Estilos / Tailwind | `docs/core/nativewind-theme.md` |
+| Navegación / rutas | `docs/core/navigation-patterns.md` |
+| Servicios / Axios / API | `docs/core/services-and-api.md` |
+| Hooks / React Query / Zustand | `docs/core/hooks-and-state.md` |
+| Plantillas de archivos | `docs/core/templates-snippets.md` |
+| Iconos o animaciones | `docs/core/animations-and-icons.md` |
+| Plugin nativo (cámara, mapas, PDF, etc.) | `docs/core/native-plugins.md` — leer **antes** de instalar |
+| Naming, TypeScript, imports | `docs/core/conventions.md` |
+| Tests | `docs/core/testing-ci.md` |
+| Pantallas con formularios / inputs | `docs/core/templates-snippets.md` (sección KeyboardAvoidingView) |
+| Loading states / skeleton | `docs/core/hooks-and-state.md` (sección Loading States y Skeleton) |
 | Maquetación desde Google Stitch | Skill `stitch-to-reactnative` (`.github/skills/stitch-to-reactnative/SKILL.md`) |
 
 ---
@@ -66,14 +66,14 @@ Antes de cualquier acción, lee `docs/agent-instructions.md`. Define el flujo co
 
 | Carpeta | Contenido |
 |---|---|
-| `docs/` | Convenciones del stack — iguales para todos los proyectos |
-| `docs-project/` | Especificaciones del proyecto concreto (no incluida en el template) |
+| `docs/core/` | Convenciones del stack — iguales para todos los proyectos |
+| `docs/workspace/` | Especificaciones del proyecto concreto (no incluida en el template) |
 
-Cuando exista `docs-project/`, leer primero sus archivos (`brief.md`, `screens.md`, `models.md`, `api.md`) para saber **qué** construir, y luego `docs/` para saber **cómo** construirlo.
+Cuando exista `docs/workspace/`, leer primero sus archivos (`brief.md`, `screens.md`, `models.md`, `api.md`) para saber **qué** construir, y luego `docs/core/` para saber **cómo** construirlo.
 
 ---
 
 ## Ante la duda
 
 - Si algo no está cubierto en los docs → preguntar al usuario antes de inventar convenciones.
-- Si identificas una mejora → anotarla en `docs/changelog.md`. No modificar otros docs sin consenso.
+- Si identificas una mejora → anotarla en `docs/core/changelog.md`. No modificar otros docs sin consenso.

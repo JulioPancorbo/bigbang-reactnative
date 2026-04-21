@@ -2,7 +2,7 @@
 
 ## Docs to Read
 
-1. **`docs/project-setup.md`** — Read the ENTIRE file. It contains:
+1. **`docs/core/project-setup.md`** — Read the ENTIRE file. It contains:
    - Step-by-step project creation commands
    - Exact `tsconfig.json` content
    - Exact dependency list (`pnpm add` commands)
@@ -12,7 +12,7 @@
    - Exact `.env.example` content
    - Exact `src/App.tsx` skeleton (will be finalized in Phase 6)
 
-2. **`docs/nativewind-theme.md`** — Read the "Configuracion `tailwind.config.js`" section for the complete Tailwind config with custom colors and spacing.
+2. **`docs/core/nativewind-theme.md`** — Read the "Configuracion `tailwind.config.js`" section for the complete Tailwind config with custom colors and spacing.
 
 ---
 
@@ -40,21 +40,21 @@ Then edit `app.json` to set the real project name:
 - `"name"` → PROJECT_NAME
 - `"slug"` → PROJECT_NAME
 
-Then align the runtime to the stable SDK line documented in `docs/project-setup.md` before the first start. Do NOT leave the project on `expo@latest` or any `@latest` template line if Expo Go compatibility matters.
+Then align the runtime to the stable SDK line documented in `docs/core/project-setup.md` before the first start. Do NOT leave the project on `expo@latest` or any `@latest` template line if Expo Go compatibility matters.
 
 If already in the target directory and it's empty, execute directly.
 
 ### Step 1.2 — Migrate to TypeScript
 
 - Rename `App.js` → `App.tsx` (if App.js exists)
-- Create `tsconfig.json` with the exact content from `docs/project-setup.md` Step 2:
+- Create `tsconfig.json` with the exact content from `docs/core/project-setup.md` Step 2:
   - Must include `"@/*": ["src/*"]` in `paths`
   - Must include `@nativewind/typescript` plugin
   - Must extend `expo/tsconfig.base`
 
 ### Step 1.3 — Install ALL dependencies
 
-Follow the install commands from `docs/project-setup.md` Step 3. Do NOT skip any package.
+Follow the install commands from `docs/core/project-setup.md` Step 3. Do NOT skip any package.
 
 Use `expo install` for Expo ecosystem packages (it resolves the compatible version for the active SDK automatically).
 Use the package manager (pnpm/npm) without version pins for non-Expo packages.
@@ -77,21 +77,21 @@ Use the package manager (pnpm/npm) without version pins for non-Expo packages.
 pnpm dlx tailwindcss init
 ```
 
-Then replace `tailwind.config.js` content with the exact config from `docs/project-setup.md` Step 4 (which matches `docs/nativewind-theme.md`). Must include:
+Then replace `tailwind.config.js` content with the exact config from `docs/core/project-setup.md` Step 4 (which matches `docs/core/nativewind-theme.md`). Must include:
 - `content: ['./src/**/*.{js,jsx,ts,tsx}']`
 - Custom colors: primary, secondary, success, error, warning, danger
 - Custom spacing: xs, sm, md, lg, xl
 
 ### Step 1.5 — Configure Babel
 
-Create `babel.config.js` with the exact content from `docs/project-setup.md` Step 5:
+Create `babel.config.js` with the exact content from `docs/core/project-setup.md` Step 5:
 - `['babel-preset-expo', { jsxImportSource: 'nativewind' }]` in `presets`
 - `nativewind/babel` in `presets`
 - `module-resolver` with alias `'@': './src'`
 
 ### Step 1.6 — Configure Metro + global CSS
 
-Create the files from `docs/project-setup.md`:
+Create the files from `docs/core/project-setup.md`:
 - `metro.config.js` with `withNativeWind(config, { input: './global.css' })`
 - `global.css` with Tailwind directives
 
@@ -121,7 +121,7 @@ src/assets/fonts/
 
 ### Step 1.9 — Create `.env.example` and `.env`
 
-Create `.env.example` with the content from `docs/project-setup.md` Step 8.
+Create `.env.example` with the content from `docs/core/project-setup.md` Step 8.
 Copy to `.env`.
 Ensure `.env` and `.env.local` are in `.gitignore`.
 

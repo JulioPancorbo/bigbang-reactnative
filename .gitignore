@@ -1,5 +1,6 @@
 # Especificaciones del proyecto concreto — nunca se suben al template base
-docs-project/
+docs/workspace/*
+!docs/workspace/.gitkeep
 
 # Node
 node_modules/

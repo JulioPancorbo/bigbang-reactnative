@@ -52,7 +52,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ## Flujo principal — Crear proyecto desde cero
 
-### PASO 1 — Leer `docs/project-setup.md`
+### PASO 1 — Leer `docs/core/project-setup.md`
 
 **Acción:** Ejecutar los pasos de bootstrap en orden:
 1. Crear app con `create-expo-app` usando `.` (punto) como destino — **NUNCA** `create-expo-app nombre-proyecto`, eso crea un subdirectorio. El proyecto siempre se genera en la raíz del workspace.
@@ -73,7 +73,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 2 — Leer `docs/structure-guide.md`
+### PASO 2 — Leer `docs/core/structure-guide.md`
 
 **Acción:** Interiorizar las reglas de arquitectura antes de crear ningún archivo.
 
@@ -86,7 +86,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 3 — Leer `docs/conventions.md`
+### PASO 3 — Leer `docs/core/conventions.md`
 
 **Acción:** Aplicar convenciones de nombres, TypeScript e imports en todos los archivos creados.
 
@@ -98,7 +98,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 4 — Leer `docs/nativewind-theme.md`
+### PASO 4 — Leer `docs/core/nativewind-theme.md`
 
 **Acción:** Configurar Nativewind y el tema visual del proyecto.
 1. Configurar `tailwind.config.js` con colores y espaciado del proyecto
@@ -119,7 +119,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 5 — Leer `docs/navigation-patterns.md`
+### PASO 5 — Leer `docs/core/navigation-patterns.md`
 
 **Acción:** Crear el sistema de navegación tipado.
 1. Crear `src/navigation/navigation-types.ts` con todos los `ParamList` (`RootStackParamList`, `AuthStackParamList`, `AppStackParamList`, `AppTabsParamList`)
@@ -144,12 +144,12 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ### PASO 6 — Crear pantallas base
 
-**Acción:** Crear las pantallas mínimas que todo proyecto necesita. Usar las plantillas de `docs/templates-snippets.md`.
+**Acción:** Crear las pantallas mínimas que todo proyecto necesita. Usar las plantillas de `docs/core/templates-snippets.md`.
 
 1. Crear `src/screens/Welcome/index.tsx` — Pantalla de bienvenida con título y botón "Continuar" → navega a Login
 2. Crear `src/screens/Login/index.tsx` — Formulario email/password con `useForm` + `useAuth`, enlace a Register
 3. Crear `src/screens/Register/index.tsx` — Formulario nombre/email/password/confirmar con `useForm` + `useAuth`, enlace a Login
-4. Crear `src/screens/Home/index.tsx` — Pantalla principal usando la **plantilla completa** de `docs/templates-snippets.md`, incluyendo los datos mock y el layout base. No sustituirla por un placeholder simplificado.
+4. Crear `src/screens/Home/index.tsx` — Pantalla principal usando la **plantilla completa** de `docs/core/templates-snippets.md`, incluyendo los datos mock y el layout base. No sustituirla por un placeholder simplificado.
 5. Crear `src/screens/Profile/index.tsx` — Pantalla de perfil con datos placeholder y botón "Cerrar sesión" (`useAuth().logout`)
 
 **Verificación obligatoria:**
@@ -166,7 +166,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 7 — Leer `docs/services-and-api.md`
+### PASO 7 — Leer `docs/core/services-and-api.md`
 
 **Acción:** Crear la capa de servicios con Axios.
 1. Crear `src/services/api.ts` con Axios client, interceptores y `parseApiError`
@@ -182,7 +182,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 8 — Leer `docs/hooks-and-state.md`
+### PASO 8 — Leer `docs/core/hooks-and-state.md`
 
 **Acción:** Crear el patrón de hooks y el store de estado global.
 1. Crear hooks por entidad con React Query: `useProducts.ts`, `useAuth.ts`
@@ -199,7 +199,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 9 — Leer `docs/templates-snippets.md`
+### PASO 9 — Leer `docs/core/templates-snippets.md`
 
 **Acción:** Usar las plantillas para crear los primeros archivos del proyecto.
 - Las pantallas base ya se crearon en el PASO 6 usando las plantillas de este doc
@@ -213,7 +213,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ---
 
-### PASO 10 — Leer `docs/testing-ci.md` (opcional para MVP)
+### PASO 10 — Leer `docs/core/testing-ci.md` (opcional para MVP)
 
 **Acción:** Configurar tests si el proyecto los requiere.
 1. Instalar dependencias de test
@@ -231,13 +231,13 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 - **No saltarse pasos ni verificaciones.** Cada checklist debe quedar validado antes de continuar.
 - Ante la duda entre dos enfoques, elegir el más simple.
 - Si algo no está en la guía, consulta con el usuario antes de inventar convenciones.
-- Si identificas una mejora a la guía, anótala en `docs/changelog.md` (no modifiques los otros docs sin consenso).
+- Si identificas una mejora a la guía, anótala en `docs/core/changelog.md` (no modifiques los otros docs sin consenso).
 - No usar `console.log`; usar `src/services/logger.ts`.
 - No crear archivos `.styles.ts`.
 - No usar `StyleSheet.create()`.
 - Estado global: **Zustand** para sesión auth + **React Query** para datos del servidor. No usar Redux Toolkit.
-- Iconos y animaciones: seguir la jerarquía de `docs/animations-and-icons.md` (iconos estáticos → `@expo/vector-icons`, animaciones JSON → `lottie-react-native`, animaciones de UI → `react-native-reanimated`).
-- Plugins nativos: **antes de instalar cualquier plugin nativo** (cámara, mapas, PDF, background tasks, etc.), consultar `docs/native-plugins.md`. Si la necesidad no está cubierta, proponer una opción al usuario antes de instalar.
+- Iconos y animaciones: seguir la jerarquía de `docs/core/animations-and-icons.md` (iconos estáticos → `@expo/vector-icons`, animaciones JSON → `lottie-react-native`, animaciones de UI → `react-native-reanimated`).
+- Plugins nativos: **antes de instalar cualquier plugin nativo** (cámara, mapas, PDF, background tasks, etc.), consultar `docs/core/native-plugins.md`. Si la necesidad no está cubierta, proponer una opción al usuario antes de instalar.
 - Manejo de errores: **todo proyecto** debe tener `ErrorBoundary` en `App.tsx` + `useToast` hook + `<Toast />` como último hijo. Errores de API van en hooks (`onError`), nunca en screens. No usar `Alert.alert()` directamente.
 - `useEffect`: úsalo solo para sincronización externa real. No lo uses para derivar estado, encadenar cálculos, disparar lógica de eventos del usuario ni como patrón genérico de fetch. Para datos del servidor, React Query; para bootstrap único, inicialización idempotente en entrypoint/store.
 - Diseño responsive: **todas las pantallas deben ser responsive**. Usar Flexbox, fracciones (`w-1/2`), breakpoints de Nativewind (`sm:`, `md:`, `lg:`), `useWindowDimensions()` para lógica dinámica. No anchos fijos en píxeles. Diseñar para posible conversión a web (Expo Web).
@@ -250,7 +250,7 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
 
 ```
 1. Crear carpeta src/screens/NombrePantalla/
-2. Crear index.tsx (usar plantilla de docs/templates-snippets.md)
+2. Crear index.tsx (usar plantilla de docs/core/templates-snippets.md)
 3. Si tiene componentes propios → crear components/ dentro de la carpeta
 4. Añadir ruta en navigation/navigation-types.ts:
    - ¿Es un tab? → AppTabsParamList
@@ -262,12 +262,12 @@ Estas reglas aplican **siempre** y tienen prioridad operativa durante toda la ej
    - Auth → stacks/AuthStack.tsx
 6. Crear hook en src/hooks/useNombreFeature.ts si la pantalla tiene datos
 7. Crear función en src/services/api.ts si el hook llama a la API
-8. Si la pantalla usa iconos o animaciones → consultar docs/animations-and-icons.md
-9. Si la pantalla usa plugins nativos (cámara, mapas, PDF, etc.) → consultar docs/native-plugins.md
+8. Si la pantalla usa iconos o animaciones → consultar docs/core/animations-and-icons.md
+9. Si la pantalla usa plugins nativos (cámara, mapas, PDF, etc.) → consultar docs/core/native-plugins.md
 ```
 
 ---
 
 ## Checklist de validación final
 
-Antes de dar por terminado el proyecto, ejecutar la validación completa de `docs/structure-guide.md` (sección "Checklist de Validación").
+Antes de dar por terminado el proyecto, ejecutar la validación completa de `docs/core/structure-guide.md` (sección "Checklist de Validación").

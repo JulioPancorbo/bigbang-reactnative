@@ -6,9 +6,9 @@ This phase converts a SINGLE Stitch screen to React Native. **One subagent per s
 
 - `references/html-to-rn-mapping.md` — Complete element, attribute, and class mapping
 - `references/stitch-specifics.md` — Icon mapping, web-only effects resolution
-- `docs/templates-snippets.md` — Screen template patterns
-- `docs/conventions.md` — Naming, imports, file structure
-- `docs/hooks-and-state.md` — Hook patterns, useFormState, React Query
+- `docs/core/templates-snippets.md` — Screen template patterns
+- `docs/core/conventions.md` — Naming, imports, file structure
+- `docs/core/hooks-and-state.md` — Hook patterns, useFormState, React Query
 
 ## Input (provided by orchestrator in the subagent prompt)
 
