@@ -69,19 +69,28 @@ Antes de cualquier acción, lee [docs/core/agent-instructions.md](docs/core/agen
 | `docs/core/` | Convenciones del stack — iguales para todos los proyectos |
 | `docs/workspace/` | Especificaciones del proyecto concreto (no incluida en el template) |
 
+> **`docs/core/` es de solo lectura.** Estos archivos son la base compartida de todos los proyectos React Native. **Nunca los modifiques** al trabajar en un proyecto concreto. Cualquier mejora o corrección debe consensuarse y aplicarse al template original, no al proyecto.
+
+> **Toda documentación específica del proyecto va en `docs/workspace/`**, nunca en `docs/core/`. Si no existe la carpeta, créala. Los archivos de referencia habituales son: `brief.md`, `screens.md`, `models.md`, `api.md`.
+
 Cuando exista `docs/workspace/`, leer primero sus archivos (`brief.md`, `screens.md`, `models.md`, `api.md`) para saber **qué** construir, y luego `docs/core/` para saber **cómo** construirlo.
+
+**Formato de documentación:**
+- Todos los documentos deben estar en formato **`.md`** (Markdown).
+- Los enlaces entre documentos deben ser **rutas relativas en formato Markdown** (`[texto](ruta/relativa/archivo.md)`). Nunca usar rutas absolutas ni URLs externas para referencias internas.
 
 **Cross-links entre docs — usa siempre rutas relativas desde la ubicación del archivo actual:**
 
 | Origen | Destino | Formato |
 |---|---|---|
-| `docs/core/*.md` | Otro doc de core | `./X.md` |
-| `docs/workspace/*.md` | Doc de core | `../core/X.md` |
-| `README.md`, skills, `.github/` | Cualquier doc | `docs/core/X.md` |
+| `docs/core/*.md` | Otro doc de core | `[texto](./X.md)` |
+| `docs/workspace/*.md` | Doc de core | `[texto](../core/X.md)` |
+| `README.md`, skills, `.github/` | Cualquier doc | `[texto](docs/core/X.md)` |
 
 ---
 
 ## Ante la duda
 
 - Si algo no está cubierto en los docs → preguntar al usuario antes de inventar convenciones.
-- Si identificas una mejora → anotarla en [docs/core/changelog.md](docs/core/changelog.md). No modificar otros docs sin consenso.
+- Si identificas una mejora en `docs/core/` → anotarla en [docs/core/changelog.md](docs/core/changelog.md). **No modificar `docs/core/` directamente** sin consenso.
+- Si necesitas añadir documentación propia del proyecto → crear o editar archivos en `docs/workspace/` (formato `.md`, enlaces relativos en Markdown).
