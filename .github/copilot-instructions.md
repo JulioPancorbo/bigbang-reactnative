@@ -43,6 +43,7 @@ Antes de cualquier acción, lee [docs/core/agent-instructions.md](docs/core/agen
 | Plugin nativo (cámara, mapas, PDF, etc.) | [docs/core/native-plugins.md](docs/core/native-plugins.md) — leer **antes** de instalar |
 | Naming, TypeScript, imports | [docs/core/conventions.md](docs/core/conventions.md) |
 | Tests | [docs/core/testing-ci.md](docs/core/testing-ci.md) |
+| Comandos del proyecto (arranque, tests, CLI) | [docs/core/commands.md](docs/core/commands.md) |
 | Pantallas con formularios / inputs | [docs/core/templates-snippets.md](docs/core/templates-snippets.md) (sección KeyboardAvoidingView) |
 | Loading states / skeleton | [docs/core/hooks-and-state.md](docs/core/hooks-and-state.md) (sección Loading States y Skeleton) |
 | Maquetación desde Google Stitch | Skill `stitch-to-reactnative` (`.github/skills/stitch-to-reactnative/SKILL.md`) |
